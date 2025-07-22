@@ -1,0 +1,570 @@
+[
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 1288H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-1288h-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:45:39.093527",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-1288h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/banner-mb-9.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 1288H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/1288h-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 1288H V6",
+      "Processor": "Two 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "3 x SW GPUs",
+      "DIMM": "32(12 TB)",
+      "Storage": "4 x 3.5ʺ;\n12 x 2.5ʺ;\n10 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:45:51.487607",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-1288h-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 1288H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-1288h-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 1288H V5",
+      "Processor": "Two 2nd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "2 x SW GPUs",
+      "DIMM": "24(7.5 TB)",
+      "Storage": "10 x 2.5ʺ;\n8 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:46:13.405715",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-1288h-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288h-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:46:26.923232",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/play-icon.png"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288h-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 2288H V6",
+      "Processor": "Two 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "11 x SW GPUs and 4 x DW GPUs",
+      "DIMM": "32(12 TB)",
+      "Storage": "20 x 3.5ʺ;\n45 x 2.5ʺ;\n34 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:46:44.951887",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288h-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288 V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:46:53.624439",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/banner-mb-7.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288h-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:47:04.294719",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288h-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5298 V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5298-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:47:14.492502",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5298-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2024/06/5298-V7-banner-mb.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5288 V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5288-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:47:24.255011",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5288-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/play-icon.png"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5288 V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5288-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 5288 V6",
+      "Processor": "Two 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "8 x SW GPUs",
+      "DIMM": "32(12 TB)",
+      "Storage": "44 x 3.5ʺ + 4 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:47:39.484818",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5288-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5288 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5288-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 5288 V5",
+      "Processor": "Two 2nd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "6 x SW GPUs",
+      "DIMM": "24(7.5 TB)",
+      "Storage": "44 x 3.5″ + 4 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:47:49.802775",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5288-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2298 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2298-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:47:58.529740",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2298-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:48:08.619614",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488h-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:48:20.962769",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/banner-mb-8.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488h-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 2488H V6",
+      "Processor": "Four 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "4 x SW GPUs and 2 x DW GPUs",
+      "DIMM": "48(15 TB)",
+      "Storage": "25 x 2.5ʺ;\n4 x 2.5ʺ + 16 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:48:32.102374",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488h-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488h-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 2488H V5",
+      "Processor": "Four 2nd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "3 x SW GPUs",
+      "DIMM": "48(15 TB)",
+      "Storage": "25 x 2.5ʺ;\n24 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:48:42.575889",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488h-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5885H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5885h-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:48:52.653461",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5885h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/play-icon.png"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5885H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5885h-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 5885H V6",
+      "Processor": "Four 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "4 x DW GPUs",
+      "DIMM": "48(15 TB)",
+      "Storage": "51 x 2.5ʺ;\n24 x NVMe;\n4 x 2.5ʺ+16 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:49:04.724481",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5885h-v6-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5885H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5885h-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer 5885H V5",
+      "Processor": "Four 2nd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "4 x SW GPUs and 2 x DW GPUs",
+      "DIMM": "48(15 TB)",
+      "Storage": "25 x 2.5ʺ;\n24 x NVMe"
+    },
+    "scraped_at": "2025-07-22T09:49:15.346082",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5885h-v5-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "KunLun 9008 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/kunlun-9008-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:49:25.333166",
+    "datasheet_link": "https://www.xfusion.com/en/resource/kunlun-9008-v5-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "High-Density Servers",
+    "name": "FusionServer X6000 V6 chassis",
+    "link": "https://www.xfusion.com/en/product/high-density-server/fusionserver-x6000-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "--",
+      "Processor": "Supports four 1U half-width 2-socket nodes",
+      "Accelerator Card": "--",
+      "DIMM": "24 x 2.5ʺ;\n24 x NVMe",
+      "Storage": "View"
+    },
+    "scraped_at": "2025-07-22T09:49:56.624558",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-x6000-v6-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "High-Density Servers",
+    "name": "FusionServer X6000 V5 chassis",
+    "link": "https://www.xfusion.com/en/product/high-density-server/fusionserver-x6000-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "Supports four 1U half-width dual nodes",
+      "Accelerator Card": "--",
+      "DIMM": "12 x 3.5ʺ;\n24 x 2.5ʺ;\n24 x NVMe",
+      "Storage": "View"
+    },
+    "scraped_at": "2025-07-22T09:50:05.948520",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-x6000-v5-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "High-Density Servers",
+    "name": "FusionServer XH321 V6 half-width node",
+    "link": "https://www.xfusion.com/en/product/high-density-server/fusionserver-xh321-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "HPC, high-density computing, and web application",
+      "Processor": "Two 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "16(6 TB)",
+      "DIMM": "6 x 2.5ʺ;\n6 x NVMe",
+      "Storage": "View"
+    },
+    "scraped_at": "2025-07-22T09:50:16.030961",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "High-Density Servers",
+    "name": "FusionServer XH321 V5 half-width node",
+    "link": "https://www.xfusion.com/en/product/high-density-server/fusionserver-xh321-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "Two 2nd Generation Intel® Xeon® Scalable processor",
+      "Accelerator Card": "16(2.5 TB)",
+      "DIMM": "3 x 3.5ʺ;\n6 x 2.5ʺ;\n6 x NVMe",
+      "Storage": "View"
+    },
+    "scraped_at": "2025-07-22T09:50:27.437268",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "High-Density Servers",
+    "name": "FusionServer XH321C V6 half-width liquid-cooled node",
+    "link": "https://www.xfusion.com/en/product/high-density-server/fusionserver-xh321c-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "HPC and high-density computing",
+      "Processor": "Two 3rd Generation Intel® Xeon® Scalable processors",
+      "Accelerator Card": "16(6 TB)",
+      "DIMM": "6 x 2.5ʺ;\n6 x NVMe",
+      "Storage": "View"
+    },
+    "scraped_at": "2025-07-22T09:50:37.097244",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "High-Density Servers",
+    "name": "FusionServer XH321L V5 half-width liquid-cooled node",
+    "link": "https://www.xfusion.com/en/product/high-density-server/fusionserver-xh321l-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Processor": "Two 2nd Generation Intel® Xeon® Scalable processor",
+      "Accelerator Card": "16(2.5 TB)",
+      "DIMM": "3 x 3.5ʺ;\n6 x 2.5ʺ;\n6 x NVMe",
+      "Storage": "View"
+    },
+    "scraped_at": "2025-07-22T09:50:48.073887",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5500 V6",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5500-v6",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Node/Processors": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:51:18.974133",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5500-v6-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5500 V7",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5500-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "FusionServer G5500 V7",
+      "Node/Processors": "2 x 4th or 5th Gen Intel® Xeon® Scalable\nprocessors",
+      "Accelerator Card": "10 x DW GPUs",
+      "DIMM": "32(8 TB)",
+      "Storage": "24*2.5ʺ /3.5ʺ SAS/SATAʺ;\n12*NVMe+8*2.5ʺ SAS/SATA"
+    },
+    "scraped_at": "2025-07-22T09:51:29.731268",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5500-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/G5500-V7-mb-banner.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5200 V7",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5200-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Node/Processors": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:51:40.881927",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5200-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/g5200-v7-banner-mb.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G8600 V7",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g8600-v7",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Node/Processors": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:51:52.362581",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g8600-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/G8600-V7-%E9%A1%B6%E9%83%A8banner-%E7%A7%BB%E5%8A%A8%E7%AB%AF.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5500 V5 chassis",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5500-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Node/Processors": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:52:02.958428",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5500-v5-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G530 V5 half-width node",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g530-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Node/Processors": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:52:13.195733",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G560 V5 full-width node",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g560-v5",
+    "tech_specs": {
+      "Main Application Scenarios": "",
+      "Node/Processors": "",
+      "Accelerator Card": "",
+      "DIMM": "",
+      "Storage": ""
+    },
+    "scraped_at": "2025-07-22T09:52:23.917526",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack-Scale Servers",
+    "name": "DH122E V6",
+    "link": "https://www.xfusion.com/en/product/rack-scale-servers/dh122e-v6",
+    "tech_specs": {
+      "Application Scenarios": "Data center, cloud computing, virtualization, and big data",
+      "Expansion Slot": "4 x PCIe expansion slots",
+      "Memory": "32 x DIMMs (or 16 x liquid-cooled DIMMs)",
+      "Storage": "SAS/SATA/NVMe drives"
+    },
+    "scraped_at": "2025-07-22T09:52:49.356945",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack-Scale Servers",
+    "name": "DH120E V7",
+    "link": "https://www.xfusion.com/en/product/rack-scale-servers/fusionpod-dh120e-v7",
+    "tech_specs": {
+      "Application Scenarios": "Data center, cloud computing, virtualization, and big data",
+      "Expansion Slot": "Five PCIe slots",
+      "Memory": "32 DDR5 DIMMs",
+      "Storage": "Up to 12 SAS/SATA/NVMe drives"
+    },
+    "scraped_at": "2025-07-22T09:52:58.192196",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "FusionPoD for AI",
+    "name": "FusionPoD for AI",
+    "link": "https://www.xfusion.com/en/product/rack-scale-servers/fusionpod-for-ai",
+    "tech_specs": {},
+    "scraped_at": "2025-07-22T09:53:30.580698",
+    "datasheet_link": "",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2024/05/%E9%A1%B6%E9%83%A8banner-pc%E7%AB%AF.jpg"
+  }
+]
