@@ -1,0 +1,7 @@
+selenium
+pandas
+mysql-connector-python
+requests
+beautifulsoup4
+google-generativeai
+schedule
