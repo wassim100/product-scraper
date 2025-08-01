@@ -5,32 +5,71 @@ import logging
 from datetime import datetime
 import os
 
+# Importer la configuration
+try:
+    from database.config import DB_CONFIG, DB_CONFIG_NO_DB
+except ImportError:
+    # Configuration par défaut si le fichier config n'existe pas
+    DB_CONFIG = {
+        'host': 'localhost',
+        'database': 'scraping_db',
+        'user': 'root',
+        'password': '',
+        'charset': 'utf8mb4',
+        'autocommit': True
+    }
+    DB_CONFIG_NO_DB = {
+        'host': 'localhost',
+        'user': 'root',
+        'password': '',
+        'charset': 'utf8mb4'
+    }
+
 # Configuration de logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class MySQLConnector:
-    def __init__(self, host='localhost', database='scraping_db', user='root', password=''):
+    def __init__(self, config=None):
         """
-        Initialise la connexion MySQL
+        Initialise la connexion MySQL avec configuration personnalisée
         """
-        self.host = host
-        self.database = database
-        self.user = user
-        self.password = password
+        if config:
+            self.config = config
+        else:
+            self.config = DB_CONFIG.copy()
         self.connection = None
+        
+    def test_mysql_availability(self):
+        """Teste si MySQL est disponible et accessible"""
+        try:
+            # Test avec configuration sans base de données
+            test_config = DB_CONFIG_NO_DB.copy()
+            test_connection = mysql.connector.connect(**test_config)
+            test_connection.close()
+            logger.info("✅ MySQL est accessible")
+            return True
+        except Error as e:
+            logger.error(f"❌ MySQL non accessible: {e}")
+            logger.info("💡 Vérifiez que MySQL est installé et démarré")
+            logger.info("💡 Pour XAMPP: Démarrez Apache et MySQL")
+            logger.info("💡 Pour installation standalone: Vérifiez le service MySQL")
+            return False
         
     def connect(self):
         """Établit la connexion à la base de données"""
         try:
-            self.connection = mysql.connector.connect(
-                host=self.host,
-                database=self.database,
-                user=self.user,
-                password=self.password
-            )
+            # D'abord tester si MySQL est disponible
+            if not self.test_mysql_availability():
+                return False
+                
+            # Créer la base de données si elle n'existe pas
+            self.create_database()
+            
+            # Se connecter à la base de données
+            self.connection = mysql.connector.connect(**self.config)
             if self.connection.is_connected():
-                logger.info(f"✅ Connexion réussie à MySQL - Base: {self.database}")
+                logger.info(f"✅ Connexion réussie à MySQL - Base: {self.config['database']}")
                 return True
         except Error as e:
             logger.error(f"❌ Erreur de connexion MySQL: {e}")
@@ -39,18 +78,16 @@ class MySQLConnector:
     def create_database(self):
         """Crée la base de données si elle n'existe pas"""
         try:
-            temp_connection = mysql.connector.connect(
-                host=self.host,
-                user=self.user,
-                password=self.password
-            )
+            temp_config = DB_CONFIG_NO_DB.copy()
+            temp_connection = mysql.connector.connect(**temp_config)
             cursor = temp_connection.cursor()
-            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {self.database}")
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {self.config['database']}")
             cursor.close()
             temp_connection.close()
-            logger.info(f"✅ Base de données '{self.database}' créée/vérifiée")
+            logger.info(f"✅ Base de données '{self.config['database']}' créée/vérifiée")
         except Error as e:
             logger.error(f"❌ Erreur création base de données: {e}")
+            raise
     
     def create_tables(self):
         """Crée les tables selon le schéma du cahier des charges"""
@@ -221,15 +258,23 @@ def save_to_database(json_file_path, table_name, brand_filter=None):
     """
     Fonction utilitaire pour sauvegarder un fichier JSON en base
     """
-    # Initialiser le connecteur
-    db = MySQLConnector()
-    
-    # Créer la base et les tables
-    db.create_database()
-    db.connect()
-    db.create_tables()
-    
     try:
+        # Initialiser le connecteur
+        db = MySQLConnector()
+        
+        # Tester la disponibilité de MySQL
+        if not db.test_mysql_availability():
+            logger.error("❌ MySQL n'est pas disponible")
+            return False
+        
+        # Se connecter à la base
+        if not db.connect():
+            logger.error("❌ Impossible de se connecter à MySQL")
+            return False
+        
+        # Créer les tables
+        db.create_tables()
+        
         # Charger les données JSON
         with open(json_file_path, 'r', encoding='utf-8') as f:
             products_data = json.load(f)
@@ -240,6 +285,20 @@ def save_to_database(json_file_path, table_name, brand_filter=None):
         
         # Sauvegarder en base
         inserted, updated = db.insert_products(products_data, table_name)
+        
+        logger.info(f"✅ Sauvegarde terminée: {inserted} insertions, {updated} mises à jour")
+        db.close()
+        return True
+        
+    except FileNotFoundError:
+        logger.error(f"❌ Fichier JSON non trouvé: {json_file_path}")
+        return False
+    except json.JSONDecodeError:
+        logger.error(f"❌ Fichier JSON invalide: {json_file_path}")
+        return False
+    except Exception as e:
+        logger.error(f"❌ Erreur lors de la sauvegarde: {e}")
+        return False
         
         logger.info(f"🎯 Sauvegarde terminée: {inserted} ajoutés, {updated} mis à jour")
         
