@@ -1,4 +1,4 @@
-# � Product Scraper - Server Specifications Extractor
+# 📦 Product Scraper - Server Specifications Extractor
 
 Un système de scraping automatisé avancé pour extraire les spécifications techniques complètes des serveurs de différentes marques avec intelligence artificielle intégrée.
 
@@ -127,7 +127,7 @@ from ai_processing.gemini_cleaning import process_json_file
 process_json_file("servers_raw.json", "servers_cleaned.json")
 ```
 
-## � Données Extraites
+## 📊 Données Extraites
 
 ### **Format JSON Standard**
 ```json
@@ -210,7 +210,7 @@ python test_single_product.py
 - **Filtrage intelligent** chassis/nodes
 - **Multi-format** support (tableaux, cartes, listes)
 
-## �️ Technologies Utilisées
+## 🛠️ Technologies Utilisées
 
 - **Python 3.8+**
 - **Selenium WebDriver** : Automation web
@@ -227,7 +227,7 @@ python test_single_product.py
 4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
 5. Créer une Pull Request
 
-## � Licence
+## 📄 Licence
 
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
