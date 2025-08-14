@@ -25,7 +25,7 @@
             "Shelves": "DG242N",
             "Host/Client OS Supported": "Windows Server; Linux; VMware"
         },
-        "scraped_at": "2025-07-31T09:49:40.244239",
+        "scraped_at": "2025-08-14T02:42:31.190204",
         "datasheet_link": null,
         "image_url": "https://p1-ofp.static.pub//fes/cms/2025/03/28/p3co7u8cuz4m64pil7f6mzuhq4ggpd341763.png"
     },
@@ -56,7 +56,7 @@
             "Security and Compliance": "Autonomous ransomware protection",
             "Cloud Integration": "Seamlessly tier, back up, replicate, and cache data to private and public clouds"
         },
-        "scraped_at": "2025-07-31T09:49:49.729914",
+        "scraped_at": "2025-08-14T02:42:42.284588",
         "datasheet_link": null,
         "image_url": "https://p1-ofp.static.pub//fes/cms/2023/07/17/jac6uv2tj7560h62e4bswbqbq6vt1b091475.png"
     },
@@ -86,7 +86,7 @@
             "Shelves": "DG242N",
             "Host/Client OS Supported": "Windows Server; Linux; VMware"
         },
-        "scraped_at": "2025-07-31T09:55:01.352544",
+        "scraped_at": "2025-08-14T02:47:55.496390",
         "datasheet_link": null,
         "image_url": "https://p3-ofp.static.pub//fes/cms/2025/03/28/r5dae3o7hnp25atryjnqbxl0g567yb803706.png"
     },
@@ -121,7 +121,7 @@
             "Security and Compliance": "Autonomous ransomware protection",
             "Cloud Integration": "Seamlessly tier, back up, replicate, and cache data to private and public clouds"
         },
-        "scraped_at": "2025-07-31T09:55:10.898217",
+        "scraped_at": "2025-08-14T02:48:06.774716",
         "datasheet_link": null,
         "image_url": "https://p2-ofp.static.pub//fes/cms/2023/07/17/3vxof2wll9yna5eqy1n8dty3pihqnt904767.png"
     },
@@ -156,7 +156,7 @@
             "Host/Client OSes Supported": "Microsoft Windows, Linux, VMware ESXi",
             "DM Series ALL-Flash Software": "The DM Series software bundles include a set of products that delivers leading data management, storage efficiency, data protection, high performance, and advanced capabilities such as instant cloning, data replication, application-aware backup and recovery, and data retention."
         },
-        "scraped_at": "2025-07-31T10:01:43.108477",
+        "scraped_at": "2025-08-14T02:54:41.375625",
         "datasheet_link": null,
         "image_url": "https://p4-ofp.static.pub//fes/cms/2025/07/03/zwfath0vqp2iywlxdgq6mdyk2miv5h897962.png"
     },
@@ -188,7 +188,7 @@
             "Host/Client OSes Supported": "Microsoft Windows, Linux, VMware ESXi",
             "DM Series ALL-Flash Software": "The DM Series software bundles include a set of products that delivers leading data management, storage efficiency, data protection, high performance, and advanced capabilities such as instant cloning, data replication, application-aware backup and recovery, and data retention."
         },
-        "scraped_at": "2025-07-31T10:03:53.274728",
+        "scraped_at": "2025-08-14T02:56:52.245931",
         "datasheet_link": null,
         "image_url": "https://p1-ofp.static.pub//fes/cms/2025/07/03/zzush8uarnjmf6mwwd0zw9ltuzkw9i935813.png"
     },
@@ -219,7 +219,7 @@
             "Host/Client OSes Supported": "Microsoft Windows, Linux, VMware ESXi",
             "DM Series ALL-Flash Software": "The DM Series software bundles include a set of products that delivers leading data management, storage efficiency, data protection, high performance, and advanced capabilities such as instant cloning, data replication, application-aware backup and recovery, and data retention."
         },
-        "scraped_at": "2025-07-31T10:05:23.314298",
+        "scraped_at": "2025-08-14T02:58:23.333075",
         "datasheet_link": null,
         "image_url": "https://p1-ofp.static.pub//fes/cms/2025/07/03/f9mu419g0n0he60btudbsbvxkigngk217537.png"
     },
@@ -251,7 +251,7 @@
             "Host/Client OS Supported": "Microsoft Windows; Linux; VMware ESXi",
             "Datasheet": "Lenovopress.com/dS0047"
         },
-        "scraped_at": "2025-07-31T10:06:06.357625",
+        "scraped_at": "2025-08-14T02:59:04.508512",
         "datasheet_link": null,
         "image_url": "https://p4-ofp.static.pub//fes/cms/2025/04/01/0x1ufi99sqcxpl3byl72j9qeqwvb5q667835.png"
     },
@@ -283,8 +283,263 @@
             "Host/Client OS Supported": "Microsoft Windows; Linux; VMware ESXi",
             "Datasheet": "Lenovopress.com/dS0047"
         },
-        "scraped_at": "2025-07-31T10:06:47.256360",
+        "scraped_at": "2025-08-14T02:59:45.740762",
         "datasheet_link": null,
         "image_url": "https://p2-ofp.static.pub//fes/cms/2025/04/01/6egy8ao9k1ngshpcob8r27agjziywu867246.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DM Series Hybrid Flash Storage",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/unified-storage/dm-series-hybrid-flash/lenovo-thinksystem-dm5200h-hybrid-flash-array/len22ts0027",
+        "name": "ThinkSystem DM5200H Hybrid Flash Array",
+        "tech_specs": {
+            "NAS Scale-out": "4 HA Pairs/Systems&nbsp;",
+            "SAN Scale-out": "4 HA Pairs/Systems&nbsp;",
+            "Per High Availability Array Specifications": "Per-system specifications (high-availability dual controller HA pair)&nbsp;",
+            "Maximum Drives (HDD/SSD)": "Up to 480&nbsp;",
+            "Maximum Raw Capacity (PB)": "Up to 11.5PB&nbsp;",
+            "Maximum Onboard Flash Cache Based on NVMe Technology (TB)": "Up to 4TB&nbsp;",
+            "Maximum Flash Pool (TB)": "TBD&nbsp;",
+            "Controller Form Factor": "2U24 + 2U12 or 4U60 Enclosure&nbsp;",
+            "PCIe Expansion Slots": "Up to 8 expansion slots&nbsp;",
+            "Onboard I/O: UTA 2 (8Gb/16Gb FC, 1GbE/10GbE/25GbE, or FCVI ports MetroCluster Only": "Not Applicable&nbsp;",
+            "FC Target Ports (64Gb autoranging)": "16",
+            "FC Target Ports (32Gb autoranging)": "16",
+            "FC Target Ports (16Gb autoranging)": "16",
+            "25GbE Ports (10GbE autoranging)": "16",
+            "10GbE Ports (maximum)": "16",
+            "10GbE BASE-T Ports (1GbE autoranging)": "16",
+            "100GbE ports (40GbE autoranging)": "12",
+            "12Gb / 6Gb SAS Ports (maximum)": "16",
+            "OS Version": "9.16.1 or later&nbsp;",
+            "Expansion Shelves": "DM240S; DM120S; DM600S",
+            "Protocols Supported": "FC; iSCSI; NFS; pNFS; CIFS/SMB; S3",
+            "Host/Client Operating Systems Supported": "Microsoft Windows, Linux, VMware ESXi",
+            "Datasheet": "Lenovopress.com/DS0048"
+        },
+        "scraped_at": "2025-08-14T03:04:39.432654",
+        "datasheet_link": null,
+        "image_url": "https://p4-ofp.static.pub//fes/cms/2025/04/04/h699ll4q09t9a7w6x0si5qscigony1110840.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DM Series Hybrid Flash Storage",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/unified-storage/dm-series-hybrid-flash/thinksystem-dm5000h-hybrid-flash-array/len22ts0005",
+        "name": "ThinkSystem DM5000H Hybrid Flash Array",
+        "tech_specs": {
+            "NAS Scale-out": "12 HA Pairs/Systems",
+            "SAN Scale-out": "6 HA Pairs/Systems",
+            "Maximum Drives (HDD/SSD)": "144",
+            "Maximum Raw Capacity": "2.3PB",
+            "Maximum Onboard Flash Cache Based on NVMe Technology": "2TB",
+            "Maximum Flash Pool": "24TB",
+            "Controller Form Factor": "2U / 24 drives",
+            "Onboard I/O: UTA 2 (8Gb/16Gb FC, 1GbE/10GbE, or FCVI ports MetroCluster Only": "8",
+            "10GbE Ports (maximum)": "8",
+            "10GbE BASE-T Ports (1GbE autoranging) (maximum)": "8",
+            "12Gb / 6Gb SAS Ports (maximum)": "4",
+            "OS version": "9.4 and later",
+            "Shelves and Media": "DM240S, DM120S, DM600S",
+            "Protocols Supported": "FC, iSCSI, NFS, pNFS, CIFS/SMB, S3",
+            "Host/Client Operating Systems Supported": "Microsoft Windows, Linux, VMware, ESXi",
+            "DM Series Hybrid Software": "The DM Series software bundle includes a set of products that delivers leading data management, storage efficiency, data protection, high performance, and advanced capabilities such as instant cloning, data replication, application-aware backup and recovery, and data retention."
+        },
+        "scraped_at": "2025-08-14T03:04:50.308177",
+        "datasheet_link": null,
+        "image_url": "https://p4-ofp.static.pub//fes/cms/2025/07/03/edge4huo2asvsetgvnfmp7hboxlsvo854783.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DM Series Hybrid Flash Storage",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/unified-storage/dm-series-hybrid-flash/thinksystem-dm7100h-hybrid-flash-array/len22ts0007",
+        "name": "ThinkSystem DM7100H Hybrid Flash Array",
+        "tech_specs": {
+            "NAS Scale-out": "12 HA Pairs/Systems",
+            "SAN Scale-out": "6 HA Pairs/Systems",
+            "Maximum Drives (HDD/SSD)": "720",
+            "Maximum Raw Capacity": "11.2PB",
+            "Maximum Onboard Flash Cache Based on NVMe Technology": "4TB",
+            "Maximum Flash Pool": "24TB",
+            "Controller Form Factor": "4U+2U Enclosure",
+            "PCIe Expansion Slots": "10",
+            "FC Target Ports (64Gb autoranging)": "32",
+            "FC Target Ports (32Gb autoranging, maximum)": "32",
+            "FC Target Ports (16Gb autoranging, maximum)": "8",
+            "25GbE Ports (10GbE autoranging)": "24",
+            "10GbE Ports (maximum)": "32",
+            "10GbE BASE-T Ports (1GbE autoranging) (maximum)": "16",
+            "100GbE ports (40GbE autoranging)": "16",
+            "12Gb / 6Gb SAS Ports (maximum)": "32",
+            "OS version": "9.7 and later",
+            "Shelves and Media": "DM240S, DM120S, DM600S",
+            "Protocols Supported": "FC, iSCSI, NFS, pNFS, CIFS/SMB, S3",
+            "Host/Client Operating Systems Supported": "Microsoft Windows, Linux, VMware, ESXi&nbsp; &nbsp;&nbsp;",
+            "DM Series Hybrid Software": "The DM Series software bundle includes a set of products that delivers leading data management, storage efficiency, data protection, high performance, and advanced capabilities such as instant cloning, data replication, application-aware backup and recovery, and data retention."
+        },
+        "scraped_at": "2025-08-14T03:05:00.412996",
+        "datasheet_link": null,
+        "image_url": "https://p3-ofp.static.pub//fes/cms/2025/07/03/4seyj85gm738loww00bjfguj3s5hfd264345.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DE Hybrid Flash Array",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/storage-area-network/de-hybrid-flash-array/thinksystem-de600s-4u60-lff-expansion-enclosure/len22ts0003",
+        "name": "ThinkSystem DE600S 4U60 LFF Expansion Enclosure",
+        "tech_specs": {
+            "Form Factor": "4U, 60 LFF drive bays (4U60)",
+            "Max Raw Capacity (Per Enclosure)": "Up to 1.44PB",
+            "Maximum Drives (Per Enclosure)": "Up to 60 HDDs / SSDs",
+            "Maximum Expansion": "DE6600H: Up to 7 DE600S 4U60 LFF expansion units",
+            "I/O Expansion Modules": "2",
+            "I/O Expansion Ports (Per Enclosure)": "8 x 12Gb SAS"
+        },
+        "scraped_at": "2025-08-14T03:09:34.974542",
+        "datasheet_link": null,
+        "image_url": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8Mzc0MjZ8aW1hZ2UvcG5nfGhhNS9oYTQvMTE2OTk3MDU0MTM2NjIucG5nfDUzOWIzZjM0YzkyZjA3OGUzYzk3NWRjMTA4YjNkMTQxODNkMDUzNmU4Zjg2OGNjN2ZiZTg1MmE2ZDQ1YjRhY2U/lenovo-data-center-storage-san-thinksystem-de600s-4u60-lff-series.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DE Hybrid Flash Array",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/storage-area-network/de-hybrid-flash-array/thinksystem-de4000h-2u12-lff/77x2gdee4h1",
+        "name": "ThinkSystem DE4000H 2U12 LFF Hybrid Flash Array",
+        "tech_specs": {
+            "Form Factor": "2U, 12 LFF drive bays (2U12)",
+            "Max Raw Capacity": "Up to 3.07PB",
+            "Maximum Drives": "Up to 192 HDDs / 120 SSDs",
+            "Maximum Expansion": "Up to 7 DE120S 2U12 LFF expansion units; Up to 3 DE240S 2U24 SFF expansion units; Up to 3 DE600S 4U60 LFF expansion units",
+            "System Memory": "16GB/64GB",
+            "Base I/O Port (Per System)": "4 x 10Gb iSCSI (optical); 4 x 16Gb FC",
+            "Optional I/O Port (Per System)": "4 x 1 Gb iSCSI RJ-45; 8 x 10Gb iSCSI (optical) or 16Gb FC; 8 x 16/32Gb FC; 8 x 10/25Gb iSCSI optical; 8 x 12GB SAS",
+            "Optional Software Feature": "Snapshot upgrade, asynchronous mirroring, synchronous mirroring",
+            "System Maximums": "Hosts/partitions: 256; Volumes: 512; Snapshot copies: 512; Mirrors: 32"
+        },
+        "scraped_at": "2025-08-14T03:10:25.429705",
+        "datasheet_link": null,
+        "image_url": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MjUwNTF8aW1hZ2UvcG5nfGg2OC9oODUvMTE1NTUyNDA5MzU0NTQucG5nfGRjNjk0MzBlNjg5MDJmYjEzYWFkZGRjMjFjNDNmZjQyNzU2NmVkMGU1NWQzMDE5YWU1ZTM0ZDMxNjJlOWQ4Mjg/lenovo-data-center-storage-san-thinksystem-de4000h-2u12-lff-series.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DE Hybrid Flash Array",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/storage-area-network/de-hybrid-flash-array/thinksystem-de6600h-hybrid-flash-array/len22ts0015",
+        "name": "Lenovo ThinkSystem DE6600H Hybrid Flash Array",
+        "tech_specs": {
+            "Form Factor": "2U24",
+            "Max Raw Capacity": "4.7PB (240 x 18TB NL-SAS) plus 367TB (24 x 15.3TB SSDs)",
+            "Maximum Drives": "Supports up to a maximum of 120x SSDs (SAS and NVMe) or 240 NL-SAS HDDs",
+            "Maximum Expansion": "Up to seven 2U12, 2U24, or 4U60 SAS drive shelves",
+            "System Memory": "32GB or 128GB per controller",
+            "Optional I/O Port (Per System)": "8x 100Gb NVMe/IB, NVMe/RoCe,",
+            "Software Feature": "Snapshots, drive encryption",
+            "System Maximums": "Max hosts: 1024; Max partitions: 512; Volumes: 2,048; Maximum DDP volume size: 2PiB; Maximum RAID volume size: 30 drives; Snapshot copies: 2,048"
+        },
+        "scraped_at": "2025-08-14T03:10:46.612976",
+        "datasheet_link": null,
+        "image_url": "https://p1-ofp.static.pub/fes/cms/2022/10/03/dhiu1sk8nyp3ekyki92kx6b4t7367z262586.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DE Hybrid Flash Array",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/storage-area-network/de-hybrid-flash-array/lenovo-thinksystem-de4200h-2u12-hybrid-flash-array/len22ts0031",
+        "name": "ThinkSystem DE4200H 2U12 Hybrid Flash Array",
+        "tech_specs": {
+            "Form Factor (Controller Enclosure)": "2U12",
+            "Maximum Raw Capacity (PB)": "2.1PB",
+            "Maximum Drives": "96 HDDs/24 SSDs",
+            "Maximum Expansion": "2U12: Up to 3 expansions",
+            "IOPS": "300,000 IOPS",
+            "Sustained Throughput (GBps)": "Up to 4.8GBps",
+            "System Memory (GB)": "32GB per controller",
+            "Base ports": "4x 10/25G iSCSI",
+            "Optional I/O Ports (per system)": "8x 12Gb SAS; 8x 1/10Gb iSCSI RJ-45; 8x 16Gb/32Gb FC",
+            "System Maximums": "Hosts/Partitions: 256; Volumes: 512; Maximum DDP Capacity per System: 12PB; Maximum DDP Volume Size: 4PB; Maximum RAID Volume Size: 4PB; Snapshot Copies: 512; Async Mirror Pairs: 32"
+        },
+        "scraped_at": "2025-08-14T03:11:17.710119",
+        "datasheet_link": null,
+        "image_url": "https://p4-ofp.static.pub//fes/cms/2025/04/07/2qgv4j4lywzrcmbnixfc4gtkxel39z216921.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "DE Hybrid Flash Array",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/storage-area-network/de-hybrid-flash-array/thinksystem-de120s-2u12-lff-expansion-enclosure/len22ts0001",
+        "name": "ThinkSystem DE120S 2U12 LFF Expansion Enclosure",
+        "tech_specs": {
+            "Form Factor": "2U, 12 LFF drive bays (2U12)",
+            "Maximum Raw Capacity (Per Enclosure)": "Up to 288TB",
+            "Maximum Drives (Per Enclosure)": "Up to 12 HDDs / SSDs",
+            "Maximum Expansion": "DE6600H: Up to 7 DE120S 2U12 LFF expansion units",
+            "I/O Expansion Modules": "2",
+            "I/O Expansion Ports (Per Enclosure)": "8 x 12Gb SAS"
+        },
+        "scraped_at": "2025-08-14T03:11:27.800670",
+        "datasheet_link": null,
+        "image_url": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MjMwMTZ8aW1hZ2UvcG5nfGg4NS9oM2YvMTE2OTk3MDQ3MjU1MzQucG5nfDY5MDQ4Njc0YmE0NmQ1NWVlYmUyOTA4YmQ1NDZhZGEzNDFhNWM0YmRhMzc2NTkyYTE0ZjMwMjM1MDM2MWJlNzE/lenovo-data-center-storage-san-thinksystem-de120s-2u12-lff-series.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "Direct Attached Storage (DAS)",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/das/lenovo-storage-d1224/77x2crb1224",
+        "name": "Lenovo D1224 Direct Attached Storage",
+        "tech_specs": {
+            "Form Factor": "2U",
+            "Dual Expansion Modules": "Dual 12Gb SAS standard (MiniSAS-HD SFF 8644), with active/active failover",
+            "Supported Drives": "24 hot-swap SAS 2.5-inch drives: 300GB and 600GB 15,000rpm HDDs; 600GB, 900GB, 1.2TB, and 1.8TB 10,000rpm HDDs; 1.2TB 10k SED HDDs; 1TB and 2TB 7,200rpm NL HDDs; 400GB, 800GB, and 1.6TB 3 DWD SSD; 400GB, 800GB, and 1.6TB 10 DWD SSDs*; 800GB SED SSDs*; 3.84TB and 7.68TB 1DWD SSDs*",
+            "Storage Capacity (per D1224 enclosure—up to 8 enclosures supported per SAS Chain)": "Up to 14.4TB – 15,000rpm SAS HDDs; 43.2TB – 10,000rpm SAS HDDs; up to 28.88TB – 10,000rpm SAS SED HDDs; up to 48TB – 7,200rpm NL SAS HDDs; up to 184.32TB – SSDs; up to 19.2TB SED SSDs",
+            "Expandability (via Daisy-Chain)": "Up to 8 D1224 units per SAS Chain",
+            "HBAs Supported": "ThinkServer 8885e PCIe 12Gb SAS Adapter (PMC 8885E chipset); ThinkServer LSI 93008-e (12Gb; LSI SAS 31088); Lenovo N2225 SAS/SATA HBA (12Gb) Adapter for System x (12Gb; LSI SAS 3008); N2226 SAS/SATA HBA (12Gb) Adapter for System x (LSI SAS 3008); ServeRAID M5225-2GB SAS/SATA Controller for System x (LSI SAS 3108); Avago SAS 9300-8e Host Bus Adapter (12Gb; LSI SAS 3008); Avago SAS 9300-16e Host Bus Adapter (12Gb; LSI SAS 3008 x2);; Avago SAS 9302-16e Host Bus Adapter (12Gb; LSI SAS 3008 x2); Avago MegaRAID SAS 9380-8e LSI SAS3108); Avago MegaRAID SAS 9380-4i4e LSI SAS3108)",
+            "RAID Support": "RAID-0, 1, 10, 5, 50, 6, 60 (HBA-dependent)",
+            "Power Supplies and Fans": "Two 580W (1+1) hot-swap/redundant 80 Plus Gold power supplies; two integrated fans per power supply",
+            "Back Panel Connectors": "Each expansion module (x2) includes one Ethernet management port, 3x MiniSAS HD Connector (SFF 8644), It can be configured as in/ingress or out/egress port by SAS zoning mode setting",
+            "Form Factor / Dimensions / Weight": "2U/Height: 87.9mm (3.5 in.); Width: 443mm (17 in.); Depth: 630mm (24.8 in.)/Weight: max. 26kg (53lbs)",
+            "Limited Warranty": "3- or 5-year Limited Warranty, 9x5 Next Business Day (upgradeable), or 9x5x4, or 24/7x4."
+        },
+        "scraped_at": "2025-08-14T03:16:11.518793",
+        "datasheet_link": null,
+        "image_url": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MjEyMDV8aW1hZ2UvcG5nfGgzZi9oZGQvOTMzNjE1Njg4MDkyNi5wbmd8MjdkNDVjOGMzNzFiYjVkMzA5NjhiYTEwYjdmNTkyZDI1NGU1ZjNjMzY4ZDYzY2RjMGJmMWZiZWEwZTE2NDViYw/lenovo-storage-d1224-front-list.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "Direct Attached Storage (DAS)",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/das/lenovo-d1212-das/77x2crb1212",
+        "name": "Lenovo D1212 Direct Attached Storage",
+        "tech_specs": {
+            "Form Factor": "2U",
+            "Single/Dual Expansion Modules": "Dual 12Gb SAS standard (MiniSAS-HD SFF 8644), with active/active failover",
+            "Supported Drives": "12 hot-swap SAS 3.5-inch drives: 900GB 10,000rpm HDDs (2.5-inch drive in 3.5-inch bay); 2TB, 4TB, 6TB, 8TB, or 10TB 7,200rpm NL HDDs*; 4TB 7,200rpm NL SED HDDs; 400GB, 10 DWD SSDs* (2.5-inch drive in 3.5-inch tray)",
+            "Storage Capacity (per D1212 enclosure—up to 8 enclosures supported per HBA port)": "Up to 10.8TB – 10,000rpm HDDs; Up to 120TB – 7,200rpm NL SAS HDDs*; Up to 48TB – 7,200rpm NL SAS SED HDDs; Up to 4.8TB SSDs",
+            "Expandability (via Daisy-Chain)": "Up to 8 D1212 units per SAS Chain",
+            "HBAs Supported": "ThinkServer 8885e PCIe 12Gb SAS Adapter (PMC 8885E chipset); ThinkServer LSI 93008-e (12Gb; LSI SAS 31088); Lenovo N2225 SAS/SATA HBA (12Gb) Adapter for System x (12Gb; LSI SAS 3008); N2226 SAS/SATA HBA (12Gb) Adapter for System x (LSI SAS 3008); ServeRAID M5225-2GB SAS/SATA Controller for System x (LSI SAS 3108); Avago SAS 9300-8e Host Bus Adapter (12Gb; LSI SAS 3008); Avago SAS 9300-16e Host Bus Adapter (12Gb; LSI SAS 3008 x2); Avago SAS 9302-16e Host Bus Adapter (12Gb; LSI SAS 3008 x2);; Avago SAS 9302-16e Host Bus Adapter (12Gb; LSI SAS 3008 x2); Avago MegaRAID SAS 9380-8e LSI SAS3108); Avago MegaRAID SAS 9380-4i4e LSI SAS3108)",
+            "RAID Support": "RAID 0, 1, 5, 6, 10, 50, 60 (HBA-dependent)",
+            "Power Supplies and Fans": "Two 580W (1+1) hot-swap/redundant 80 Plus Gold power supplies; two integrated fans per power supply",
+            "Back Panel Connectors": "Each expansion module (x2) includes 1 Ethernet management port, 3x MiniSAS HD Connector (SFF 8644), It can be configured as in/ingress or out/egress port by SAS zoning mode setting.",
+            "Form Factor / Dimensions / Weight": "2U/Height: 87.9mm (3.5 in.); Width: 443mm (17 in.); Depth: 630mm (24.8 in.); Weight: max. 24kg (57.2lbs)",
+            "Limited Warranty": "3- or 5-year Limited Warranty, 9x5 Next Business Day (upgradeable), or 9x5x4, or 24/7x4."
+        },
+        "scraped_at": "2025-08-14T03:16:32.371984",
+        "datasheet_link": null,
+        "image_url": "https://p1-ofp.static.pub/medias/bWFzdGVyfHJvb3R8MTg4NDl8aW1hZ2UvcG5nfGhhZC9oNjYvOTMzNjE1MDQyNTYzMC5wbmd8MTI5NzI3OGU1OTBiODVmY2Q3NDY3MGQ1MDNiNGVjYTJhZDE1ZjkzNjY4OWE0NTJmNDhiYjEwOTViOGI3YzQzNQ/lenovo-storage-d1212-front-list.png"
+    },
+    {
+        "brand": "Lenovo",
+        "category": "Direct Attached Storage (DAS)",
+        "link": "https://www.lenovo.com/tn/fr/p/servers-storage/storage/das/thinksystem-d4390-direct-attached-storage/len22ts0018",
+        "name": "ThinkSystem D4390 Direct Attached Storage",
+        "tech_specs": {
+            "Form Factor": "4U",
+            "Dual Expansion Modules": "Dual 12/24Gb SAS standard, with active/active failover",
+            "Supported Drives": "90x hot-swap SAS HDD/SSD drives (12 SAS SSD drives supported per enclosure):",
+            "Storage Capacity (per enclosure)": "Up to 2.1PB – 7,200rpm NL SAS HDDs; Up to 9.6TB – SAS SSDs",
+            "Expandability (via Daisy-Chain)": "Up to 2x D4390 enclosures per HBA",
+            "RAID Support": "RAID-0, 1, 10, 5, 50, 6, 60 (Host controller-dependent)",
+            "Host Controllers Supported": "ThinkSystem RAID 940-8e PCIe 12Gb Adapter; ThinkSystem 440-16e SAS/SATA PCIe Gen4 12Gb HBA; ThinkSystem 440-8e PCIe 12Gb SAS/SATA HBA",
+            "Power Supplies and Fans": "4x 1200W 80 Plus Titanium (2+2/3+1) hot-swap/redundant power supplies; 5 hot-swap/redundant fans",
+            "Back Panel Connectors": "Each expansion module (x2) has 4 x 24Gbps Mini-SAS HD (SFF-8644) ports",
+            "Dimensions (H x W x D)": "175.3mm x 446mm x 1080mm (6.9” x 17.56” x 42.52”)",
+            "Weight": "Min. 45kg (95lbs) / Max. 118kg (260lbs)",
+            "Hot-Swap Components": "HDDs, SSDs, ESMs, PSUs, 5V DC-DC modules, fans",
+            "Limited Warranty": "3-year Limited Warranty, 9x5 Next Business Day Onsite (upgradeable)"
+        },
+        "scraped_at": "2025-08-14T03:17:03.323404",
+        "datasheet_link": null,
+        "image_url": "https://p3-ofp.static.pub/fes/cms/2023/03/03/2chk10836e2zit2cdljx9ev1mgkynh457756.png"
     }
 ]

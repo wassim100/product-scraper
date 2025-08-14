@@ -1,0 +1,27 @@
+[
+  {
+    "brand": "EPSON",
+    "link": "https://epson.com/For-Home/Printers/Inkjet/Expression-Home-XP-4200-Wireless-Color-Inkjet-All-in-One-Printer-with-Scan-and-Copy/p/C11CK65201",
+    "name": "Expression Home XP-4200 All-in-One Printer",
+    "tech_specs": {
+      "Affichage": {
+        "Taille": "2.4\"",
+        "Type": "Couleur"
+      },
+      "Impression": {
+        "Qualité": "Remarquable",
+        "Photos": "Sans bordure",
+        "Sans fil": "Oui",
+        "Cartouches": "Individuelles"
+      }
+    },
+    "scraped_at": "2025-08-14T11:39:40.182801",
+    "datasheet_link": "https://mediaserver.goepson.com/ImConvServlet/imconv/0c9bf8b6087e325f40dd3d72cb0e54b068dd46c9/original?assetDescr=Expression_Home_XP-4200_Printer_Specification_Sheet_CPD-62071R1.pdf",
+    "sku": "C11CK65201",
+    "price": "$99.99",
+    "image_url": "https://mediaserver.goepson.com/ImConvServlet/imconv/a25ba1100e79d6925ab5c38b746748f5d514703f/515Wx515H?use=productpictures&hybrisId=B2C&assetDescr=XP-4200_headon-output-scan_690x460",
+    "reviews": "(192)",
+    "ai_processed": true,
+    "ai_processed_at": "2025-08-14 11:39:46"
+  }
+]

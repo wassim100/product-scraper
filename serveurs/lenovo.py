@@ -7,6 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
 from selenium.webdriver.chrome.options import Options
+import os
+import sys
 
 # Configuration
 OUTPUT_JSON = "lenovo_servers_full.json"
@@ -722,4 +724,23 @@ def scrape_lenovo_servers():
         driver.quit()
 
 if __name__ == "__main__":
-    scrape_lenovo_servers()
+    # Import tardif pour éviter import circulaire si exécuté comme module
+    try:
+        sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+        from database.mysql_connector import save_to_database
+    except Exception:
+        save_to_database = None
+
+    ENABLE_DB = os.getenv("ENABLE_DB", "false").lower() == "true"
+
+    products = scrape_lenovo_servers()
+    
+    # Sauvegarde BD optionnelle
+    if products and ENABLE_DB and save_to_database:
+        try:
+            save_to_database(OUTPUT_JSON, "serveurs", "Lenovo")
+            print("✅ Sauvegarde en base de données réussie !")
+        except Exception as e:
+            print(f"❌ Erreur sauvegarde base de données: {e}")
+    elif not ENABLE_DB:
+        print("ℹ️ Sauvegarde BD désactivée (ENABLE_DB=false)")

@@ -4,6 +4,7 @@ import json
 import logging
 from datetime import datetime
 import os
+import hashlib
 
 # Importer la configuration
 try:
@@ -101,13 +102,18 @@ class MySQLConnector:
                     brand VARCHAR(100) NOT NULL,
                     link TEXT NOT NULL,
                     name VARCHAR(500) NOT NULL,
+                    sku VARCHAR(100) NULL,
+                    link_hash CHAR(64) NULL,
                     tech_specs JSON,
                     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     datasheet_link TEXT,
                     image_url TEXT,
+                    ai_processed TINYINT(1) DEFAULT 0,
+                    ai_processed_at TIMESTAMP NULL,
+                    is_active TINYINT(1) NOT NULL DEFAULT 1,
+                    last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                    UNIQUE KEY unique_product (brand, name)
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                 )
             """,
             'stockage': """
@@ -116,13 +122,18 @@ class MySQLConnector:
                     brand VARCHAR(100) NOT NULL,
                     link TEXT NOT NULL,
                     name VARCHAR(500) NOT NULL,
+                    sku VARCHAR(100) NULL,
+                    link_hash CHAR(64) NULL,
                     tech_specs JSON,
                     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     datasheet_link TEXT,
                     image_url TEXT,
+                    ai_processed TINYINT(1) DEFAULT 0,
+                    ai_processed_at TIMESTAMP NULL,
+                    is_active TINYINT(1) NOT NULL DEFAULT 1,
+                    last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                    UNIQUE KEY unique_product (brand, name)
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                 )
             """,
             'imprimantes_scanners': """
@@ -131,13 +142,18 @@ class MySQLConnector:
                     brand VARCHAR(100) NOT NULL,
                     link TEXT NOT NULL,
                     name VARCHAR(500) NOT NULL,
+                    sku VARCHAR(100) NULL,
+                    link_hash CHAR(64) NULL,
                     tech_specs JSON,
                     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     datasheet_link TEXT,
                     image_url TEXT,
+                    ai_processed TINYINT(1) DEFAULT 0,
+                    ai_processed_at TIMESTAMP NULL,
+                    is_active TINYINT(1) NOT NULL DEFAULT 1,
+                    last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                    UNIQUE KEY unique_product (brand, name)
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
                 )
             """
         }
@@ -147,12 +163,63 @@ class MySQLConnector:
             for table_name, query in tables.items():
                 cursor.execute(query)
                 logger.info(f"✅ Table '{table_name}' créée/vérifiée")
+                # Migration légère: ajouter colonnes/index si table existait déjà
+                self._migrate_table_schema(cursor, table_name)
             
             self.connection.commit()
             cursor.close()
             
         except Error as e:
             logger.error(f"❌ Erreur création tables: {e}")
+
+    def _migrate_table_schema(self, cursor, table_name: str):
+        """Ajoute les colonnes/index si manquants et ajuste les clés uniques pour un upsert robuste."""
+        # Colonnes à ajouter
+        alter_statements = [
+            f"ALTER TABLE {table_name} ADD COLUMN sku VARCHAR(100) NULL",
+            f"ALTER TABLE {table_name} ADD COLUMN link_hash CHAR(64) NULL",
+            f"ALTER TABLE {table_name} ADD COLUMN ai_processed TINYINT(1) DEFAULT 0",
+            f"ALTER TABLE {table_name} ADD COLUMN ai_processed_at TIMESTAMP NULL",
+            f"ALTER TABLE {table_name} ADD COLUMN is_active TINYINT(1) NOT NULL DEFAULT 1",
+            f"ALTER TABLE {table_name} ADD COLUMN last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        ]
+        for stmt in alter_statements:
+            try:
+                cursor.execute(stmt)
+                logger.info(f"🔧 {table_name}: colonne ajoutée ({stmt})")
+            except Error as e:
+                # Ignorer si la colonne existe déjà
+                if 'Duplicate column name' in str(e):
+                    pass
+                else:
+                    logger.debug(f"ℹ️ Ignoré: {e}")
+
+        # Indices uniques: remplacer (brand, name) par (brand, sku) et (brand, link_hash)
+        try:
+            cursor.execute(f"ALTER TABLE {table_name} DROP INDEX unique_product")
+            logger.info(f"🔧 {table_name}: index unique_product supprimé")
+        except Error:
+            pass
+
+        # Ajouter unique(brand, sku)
+        try:
+            cursor.execute(f"CREATE UNIQUE INDEX unique_brand_sku ON {table_name} (brand, sku)")
+            logger.info(f"🔧 {table_name}: index unique_brand_sku créé")
+        except Error as e:
+            if 'Duplicate key name' in str(e):
+                pass
+            else:
+                logger.warning(f"⚠️ {table_name}: création unique_brand_sku ignorée: {e}")
+
+        # Ajouter unique(brand, link_hash) pour dédup sans SKU
+        try:
+            cursor.execute(f"CREATE UNIQUE INDEX unique_brand_linkhash ON {table_name} (brand, link_hash)")
+            logger.info(f"🔧 {table_name}: index unique_brand_linkhash créé")
+        except Error as e:
+            if 'Duplicate key name' in str(e):
+                pass
+            else:
+                logger.warning(f"⚠️ {table_name}: création unique_brand_linkhash ignorée: {e}")
     
     def insert_products(self, products_data, table_name):
         """
@@ -164,17 +231,21 @@ class MySQLConnector:
         try:
             cursor = self.connection.cursor()
             
-            # Requête d'insertion avec gestion des doublons
+            # Requête d'insertion avec gestion des doublons (clé: brand+sku ou brand+link_hash)
             query = f"""
-                INSERT INTO {table_name} 
-                (brand, link, name, tech_specs, scraped_at, datasheet_link, image_url)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO {table_name}
+                (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
-                tech_specs = VALUES(tech_specs),
-                scraped_at = VALUES(scraped_at),
-                datasheet_link = VALUES(datasheet_link),
-                image_url = VALUES(image_url),
-                updated_at = CURRENT_TIMESTAMP
+                    tech_specs = VALUES(tech_specs),
+                    scraped_at = VALUES(scraped_at),
+                    datasheet_link = VALUES(datasheet_link),
+                    image_url = VALUES(image_url),
+                    ai_processed = VALUES(ai_processed),
+                    ai_processed_at = VALUES(ai_processed_at),
+                    is_active = 1,
+                    last_seen = CURRENT_TIMESTAMP,
+                    updated_at = CURRENT_TIMESTAMP
             """
             
             inserted_count = 0
@@ -183,20 +254,29 @@ class MySQLConnector:
             for product in products_data:
                 # Conversion des tech_specs en JSON string
                 tech_specs_json = json.dumps(product.get('tech_specs', {}), ensure_ascii=False)
+                link_val = product.get('link', '') or ''
+                link_hash = hashlib.sha256(link_val.encode('utf-8')).hexdigest() if link_val else None
+                ai_processed = 1 if product.get('ai_processed') else 0
+                ai_processed_at = product.get('ai_processed_at')
                 
                 values = (
                     product.get('brand', ''),
-                    product.get('link', ''),
+                    link_val,
                     product.get('name', ''),
+                    product.get('sku'),
+                    link_hash,
                     tech_specs_json,
                     product.get('scraped_at', datetime.now().isoformat()),
                     product.get('datasheet_link'),
-                    product.get('image_url', '')
+                    product.get('image_url', ''),
+                    ai_processed,
+                    ai_processed_at,
+                    1
                 )
                 
-                # Vérifier si le produit existe déjà
-                check_query = f"SELECT id FROM {table_name} WHERE brand = %s AND name = %s"
-                cursor.execute(check_query, (product.get('brand'), product.get('name')))
+                # Vérifier si le produit existe déjà (préfère SKU, sinon link_hash)
+                check_query = f"SELECT id FROM {table_name} WHERE brand = %s AND ((sku IS NOT NULL AND sku = %s) OR (sku IS NULL AND link_hash = %s)) LIMIT 1"
+                cursor.execute(check_query, (product.get('brand'), product.get('sku'), link_hash))
                 exists = cursor.fetchone()
                 
                 cursor.execute(query, values)
@@ -254,42 +334,107 @@ class MySQLConnector:
             self.connection.close()
             logger.info("✅ Connexion MySQL fermée")
 
+    def deactivate_missing(self, table_name: str, brand: str, current_skus: set, current_link_hashes: set):
+        """Marque inactifs les produits d'une marque non présents dans le lot courant (par SKU ou link_hash)."""
+        if not self.connection or not self.connection.is_connected():
+            self.connect()
+
+        if not brand:
+            logger.warning("⚠️ deactivate_missing: brand non spécifié, opération ignorée")
+            return
+
+        try:
+            cursor = self.connection.cursor()
+
+            # Réactiver les actuels (sécurité si relance)
+            if current_skus:
+                sku_list = ','.join(['%s'] * len(current_skus))
+                cursor.execute(
+                    f"UPDATE {table_name} SET is_active = 1, last_seen = CURRENT_TIMESTAMP WHERE brand = %s AND sku IN ({sku_list})",
+                    (brand, *list(current_skus))
+                )
+
+            if current_link_hashes:
+                lh_list = ','.join(['%s'] * len(current_link_hashes))
+                cursor.execute(
+                    f"UPDATE {table_name} SET is_active = 1, last_seen = CURRENT_TIMESTAMP WHERE brand = %s AND (sku IS NULL OR sku = '') AND link_hash IN ({lh_list})",
+                    (brand, *list(current_link_hashes))
+                )
+
+            # Désactiver ceux non vus avec SKU
+            if current_skus:
+                sku_list = ','.join(['%s'] * len(current_skus))
+                cursor.execute(
+                    f"UPDATE {table_name} SET is_active = 0 WHERE brand = %s AND sku IS NOT NULL AND sku <> '' AND sku NOT IN ({sku_list})",
+                    (brand, *list(current_skus))
+                )
+            else:
+                # Aucun SKU dans ce lot: ne pas désactiver en masse par SKU
+                pass
+
+            # Désactiver ceux non vus sans SKU (par link_hash)
+            if current_link_hashes:
+                lh_list = ','.join(['%s'] * len(current_link_hashes))
+                cursor.execute(
+                    f"UPDATE {table_name} SET is_active = 0 WHERE brand = %s AND (sku IS NULL OR sku = '') AND link_hash IS NOT NULL AND link_hash <> '' AND link_hash NOT IN ({lh_list})",
+                    (brand, *list(current_link_hashes))
+                )
+
+            self.connection.commit()
+            cursor.close()
+            logger.info(f"🟡 {table_name}:{brand} - désactivation des produits non vus terminée")
+        except Error as e:
+            logger.error(f"❌ Erreur désactivation des produits manquants: {e}")
+
 def save_to_database(json_file_path, table_name, brand_filter=None):
     """
     Fonction utilitaire pour sauvegarder un fichier JSON en base
     """
+    db = None
     try:
         # Initialiser le connecteur
         db = MySQLConnector()
-        
+
         # Tester la disponibilité de MySQL
         if not db.test_mysql_availability():
             logger.error("❌ MySQL n'est pas disponible")
             return False
-        
+
         # Se connecter à la base
         if not db.connect():
             logger.error("❌ Impossible de se connecter à MySQL")
             return False
-        
+
         # Créer les tables
         db.create_tables()
-        
+
         # Charger les données JSON
         with open(json_file_path, 'r', encoding='utf-8') as f:
             products_data = json.load(f)
-        
+
         # Filtrer par marque si spécifié
         if brand_filter:
             products_data = [p for p in products_data if p.get('brand', '').lower() == brand_filter.lower()]
-        
+
         # Sauvegarder en base
         inserted, updated = db.insert_products(products_data, table_name)
-        
+
+        # Désactiver les produits non vus de la même marque (si brand_filter fourni et si activé)
+        enable_deactivate = os.getenv('ENABLE_DEACTIVATE_MISSING', 'true').lower() == 'true'
+        if brand_filter and enable_deactivate:
+            current_skus = {p.get('sku') for p in products_data if p.get('sku')}
+            current_link_hashes = set()
+            for p in products_data:
+                link_val = p.get('link') or ''
+                if link_val:
+                    current_link_hashes.add(hashlib.sha256(link_val.encode('utf-8')).hexdigest())
+            db.deactivate_missing(table_name, brand_filter, current_skus, current_link_hashes)
+        elif brand_filter and not enable_deactivate:
+            logger.info(f"⏭️ Désactivation des produits non vus SKIPPED (ENABLE_DEACTIVATE_MISSING=false) pour {table_name}:{brand_filter}")
+
         logger.info(f"✅ Sauvegarde terminée: {inserted} insertions, {updated} mises à jour")
-        db.close()
         return True
-        
+
     except FileNotFoundError:
         logger.error(f"❌ Fichier JSON non trouvé: {json_file_path}")
         return False
@@ -299,14 +444,9 @@ def save_to_database(json_file_path, table_name, brand_filter=None):
     except Exception as e:
         logger.error(f"❌ Erreur lors de la sauvegarde: {e}")
         return False
-        
-        logger.info(f"🎯 Sauvegarde terminée: {inserted} ajoutés, {updated} mis à jour")
-        
-    except Exception as e:
-        logger.error(f"❌ Erreur sauvegarde: {e}")
-    
     finally:
-        db.close()
+        if db:
+            db.close()
 
 if __name__ == "__main__":
     # Test de connexion

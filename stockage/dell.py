@@ -14,6 +14,7 @@ import sys
 # Ajouter le chemin du module database
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from database.mysql_connector import save_to_database
+ENABLE_DB = os.getenv("ENABLE_DB", "false").lower() == "true"
 
 # ✅ CONFIGURATION DELL STOCKAGE
 BRAND = "Dell"
@@ -590,14 +591,16 @@ if __name__ == "__main__":
                 json.dump(products, f, ensure_ascii=False, indent=4)
             print(f"💾 Données Dell sauvegardées dans {OUTPUT_JSON}")
             
-            # Sauvegarde en base de données - DÉSACTIVÉ POUR LES TESTS
-            # try:
-            #     save_to_database(OUTPUT_JSON, "stockage", BRAND)
-            #     print("✅ Sauvegarde Dell en base de données réussie!")
-            # except Exception as e:
-            #     print(f"❌ Erreur sauvegarde base de données Dell: {e}")
-            #     print("💡 Assurez-vous que MySQL est installé et configuré")
-            print("ℹ️ Sauvegarde en base de données désactivée (mode test)")
+            # Sauvegarde en base de données conditionnelle
+            if ENABLE_DB:
+                try:
+                    save_to_database(OUTPUT_JSON, "stockage", BRAND)
+                    print("✅ Sauvegarde Dell en base de données réussie!")
+                except Exception as e:
+                    print(f"❌ Erreur sauvegarde base de données Dell: {e}")
+                    print("💡 Assurez-vous que MySQL est installé et configuré")
+            else:
+                print("ℹ️ Sauvegarde BD désactivée (ENABLE_DB=false)")
         else:
             print("⚠️ Aucun produit Dell n'a été extrait.")
             

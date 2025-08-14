@@ -1,0 +1,324 @@
+[
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 1288H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-1288h-v7",
+    "tech_specs": {
+      "Form Factor\n1U rack server\nProcessor\n1 or 2 x 4th or 5th Gen Intel® Xeon® Scalable processors with TDP up to 385 W per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x DDR5 DIMMs, with up to 5600 MT/s speed\nLocal Storage\nSupports hot-swappable drives in the following configurations": "• 4 x 3.5ʺ SAS/SATA drives/SSDs\n• 8-12 x 2.5ʺ SAS/SATA drives/SSDs\n• 2 x M.2 SSDs\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60; optional supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nProvides expansion capability of multiple types of networks\nSupports OCP 3.0 NICs. The two FlexIO card slots support two OCP 3.0 NICs, which can be configured as required. Hot swap and PCIe 5.0 are supported\nPCIe Expansion\nProvides 5 x PCIe slots, including 2 x FlexIO slots dedicated for OCP 3.0 NICs and 3 x PCIe slots, and 1 slots support PCIe 5.0\nFan Module\nProvides 8 x hot-swappable counter-rotating fan modules in N+1 redundancy\nPower Supply\n900 W/1200 W/1500 W/2000 W Platinum/Titanium hot-swappable PSUs in 1+1 redundancy\nManagement\nThe iBMC chip integrates one dedicated management GE network port, providing comprehensive management features such as fault diagnosis, automatic O&M, and hardware security hardening\n• The iBMC supports standard interfaces such as Redfish, SNMP, and IPMI 2.0; provides a remote management user interface based on HTML5/VNC KVM; supports out-of-band management functions such as monitoring, diagnosis, configuration, Agentless, and remote control for simplified management\nMore"
+    },
+    "scraped_at": "2025-08-14T02:00:41.020428",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-1288h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/banner-mb-9.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 1288H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/1288h-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 1288H V6\nForm Factor\n1U rack server\nProcessors\nOne or two 3rd Gen Intel® Xeon® Scalable Ice Lake processors (8300/6300/5300/4300 series), thermal design power (TDP) up to 270 W\nChipset\nIntel C621A\nMemory\n32 DDR4 DIMMs, up to 3200 MT/s; 16 Optane™ PMem 200 series, up to 3200 MT/s\nLocal Storage\nSupports various drive configurations and hot swappable": "• 8 to 12 x 2.5-inch SAS/SATA/SSD drives\n• 10 x 2.5-inch drives (6–10 NVMe SSDs and 0–4 SAS/SATA drives, with a total number of 10 or less)\n• 10 x 2.5-inch drives (2–4 NVMe SSDs and 6–8 SAS/SATA drives, with a total number of 10 or less)\n• 4 x 3.5-inch SAS/SATA/SSD drives\nSupports flash storage:\n• Dual M.2 SSDs\nRAID Support\nSupports RAID 0, 1, 10, 5, 50, 6, or 60, optional supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration.\nNetwork\nProvides expansion capability of multiple types of networks.\nProvides the OCP 3.0 network adapter. The two FlexIO card slots support two OCP 3.0 network adapter respectively, which can be configured as required.\nSupports the hot swap function.\nPCIe Expansion\nProvides six PCIe slots, including one PCIe slot dedicated for RAID controller card, two FlexIO card slots dedicated for OCP 3.0 network adapters, and three PCIe 4.0 slots for standard PCIe cards.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:00:53.417679",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-1288h-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 1288H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-1288h-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 1288H V5\nForm Factor\n1U, 2-socket rack server\nProcessors\n1 or 2 1st Generation Intel® Xeon® Scalable processors (3100/4100/5100/6100/8100 series), up to 205 W\n1 or 2 2nd Generation Intel® Xeon® Scalable processors (3200/4200/5200/6200/8200 series), up to 205 W\nMemory\n24 DDR4 DIMM slots, 2933 MT/s; up to 12 Intel® Optane™ PMem modules (100 series), 2666 MT/s\nLocal Storage\nSupports hot-plug hard drives and the following configuration options": "10 x 2.5-inch hard drives (6–8 NVMe SSDs and 2–4 SAS/SATA drives, with a total number of 10 or less)\n10 x 2.5-inch SAS/SATA/SSDs (2–4 NVMe SSDs and 6–8 SAS/SATA HDDs, with a total number of 10 or less)\n10 x 2.5-inch SAS/SATA/SSDs\n8 x 2.5-inch SAS/SATA hard drives\n4 x 3.5-inch SAS/SATA hard drives\nFlash storage:\n2 M.2 SSDs\nRAID Support\nRAID 0, 1, 10, 5, 50, 6, or 60\nConfigured with a supercapacitor for power-off protection for the cache (optional)\nRAID level migration, drive roaming, self-diagnosis, and web-based remote configuration\nNetwork Ports\nLOM: 2 x 10GE + 2 x GE ports\nFlexible NIC: 2 x GE, 4 x GE, 2 x 10GE, 2 x 25GE, or 1/2 x 56G FDR IB ports\nPCIe Expansion\nUp to 5 PCIe 3.0 slots, including 1 for a RAID controller card and 1 for a flexible NIC\nMore"
+    },
+    "scraped_at": "2025-08-14T02:01:05.365614",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-1288h-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288h-v7",
+    "tech_specs": {
+      "Form Factor\n2U rack server\nProcessor\n1 or 2 x 4th or 5th Gen Intel® Xeon® Scalable processors with TDP up to 385 W per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x 5600 MT/s DDR5 DIMMs and 16 x DDR5 DIMMs supported by the CXL technology; up to 48 x DIMMs*\nLocal Storage\nHot-swappable drives with the following configuration options are supported": "• 8 to 35 x 2.5ʺ SAS/SATA/SSD drives\n• 12 to 18 x 3.5ʺ SAS/SATA drives\n• 4/8/16/24 x NVMe SSDs\n• Up to 45 x 2.5ʺ drives, or 28 x full NVMe SSDs*\n• 2 x M.2 SSDs, hardware RAID, and hot swap\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60; optional supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nExpansion capability of multiple types of networks\nOCP 3.0 NICs are supported. Both two FlexIO card slots support two OCP 3.0 NICs, which can be configured as required. Hot swap is supported\nPCIe Expansion\nUp to 19 x PCIe slots: 2 x FlexIO slots dedicated for OCP 3.0 NICs and 17 x standard PCIe expansion slots*, 8 slots of which support PCIe 5.0\nGPU Card\n4 x dual-width or 14 x single-width GPU cards*\nFan Module\n4 x hot-swappable counter-rotating fans in N+1 redundancy\nPower Supply\n900 W/1200 W/1500 W/2000 W/3000 W Platinum/Titanium hot-swappable PSUs in 1+1 redundancy\nMore"
+    },
+    "scraped_at": "2025-08-14T02:01:17.177547",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/play-icon.png"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288h-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 2288H V6\nForm Factor\n2U rack server\nProcessors\nOne or two 3rd Gen Intel® Xeon® Scalable Ice Lake processors (8300/6300/5300/4300 series), TDP up to 270 W\nChipset\nIntel C621A\nMemory\n16/32 DDR4 DIMMs, up to 3200 MT/s; 16 Optane™ PMem 200 series, up to 3200 MT/s\nLocal Storage\nSupports various drive configurations and hot swappable": "• 8-31 x 2.5-inch SAS/SATA/SSD drives\n• 12-20 x 3.5-inch SAS/SATA drives\n• 4/8/16/24 NVMe SSDs\n• Supports a maximum of 45 x 2.5-inch drives or 34 full-NVMe SSDs\nSupports flash storage:\n• 2 x M.2 SSDs\nRAID Support\nSupports RAID 0, 1, 10, 5, 50, 6, or 60, optional supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration.\nNetwork\nProvides expansion capability of multiple types of networks. Provides the OCP 3.0 network adapter. The two FlexIO card slots support two OCP 3.0 network adapters respectively, which can be configured as required. Hots wappable function supported\nPCIe Expansion\nProvides up to 14 PCIe 4.0 expansion slots for a variety of applications.\nHeterogeneous Acceleration Cards\nSupports four 300 W FHFL dual-width GPU accelerator cards, eleven HHHL single-width GPU accelerator cards, or eight FHFL single-width GPU accelerator cards.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:01:30.484382",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288h-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288 V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288-v7",
+    "tech_specs": {
+      "Form Factor\n2U rack server\nProcessor\n1 or 2 x 4th or 5th Gen Intel® Xeon® Scalable processors with TDP up to 225 W per processor\nChipset\nEmmitsburg PCH\nMemory\n16 x DDR5 DIMMs, delivering up to 4800 MT/s speed\nLocal Storage\nSupports hot-swappable drives in the following configuration options": "• 8 to 31 x 2.5ʺ SAS/SATA/SSD drives\n• 10 to 14 x 3.5ʺ SAS/SATA drives\n• 4 x NVMe SSDs\n• Up to 31 x 2.5ʺ drives\nSupports flash storage:\n• 2 x M.2 SSDs\nRAID\nSupports RAID 0, 1, 10, 1E, 5, 50, 6, or 60, optional supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nExpansion capability for multiple types of networks\nSupports OCP 3.0 NICs. One FlexIO card slot supports one OCP 3.0 NIC, which can be configured as required\nPCIe Expansion\nUp to 8 x PCIe slots\n1 x FlexIO expansion slot dedicated for OCP 3.0, 1 x expansion slot dedicated for the RAID controller card, and 6 x standard PCIe expansion slots\nHeterogeneous Accelerator Card\nUp to 4 x 75 W half-height half-length GPU accelerator cards\nFan Module\n4 x hot-swappable counter-rotating fans in N+1 redundancy\nMore"
+    },
+    "scraped_at": "2025-08-14T02:01:42.124267",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/banner-mb-7.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2288H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2288h-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 2288H V5\nForm Factor\n2U, 2-socket rack server\nProcessors\n1 or 2 1st Generation Intel® Xeon® Scalable processors (3100/4100/5100/6100/8100 series), up to 205W\n1 or 2 2nd Generation Intel® Xeon® Scalable processors (3200/4200/5200/6200/8200 series), up to 205W\nMemory\n24 DDR4 DIMM slots, 2933 MT/s; up to 12 Intel® Optane™ PMem modules (100 series), 2666 MT/s\nInternal Storage\nSupports hot-pluggable drives with the following configuration options": "8 x 2.5-inch SAS/SATA HDDs or SSDs\n12/16/20 x 3.5-inch SAS/SATA HDDs\n4, 8, 12, 24, or 28 NVMe SSDs\n31 x 2.5-inch SAS/SATA HDDs or SSDs\nFlash storage:\n2 M.2 SATA SSDs, hot swappable, hardware RAID\nRAID Support\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60\nConfigured with a supercapacitor for cache power-off protection (optional)\nRAID level migration, drive roaming, self-diagnosis, and web-based remote configuration\nNetwork Ports\nLOM: 2 x 10 GE + 2 x GE ports\nFlexible NIC: 2 x GE, 4 x GE, 2 x 10 GE, 2 x 25 GE, or 1/2 x 56G FDR IB ports\nPCIe Expansion\nUp to 10 PCIe 3.0 slots, including 1 for a RAID controller card and 1 for a flexible NIC\nHeterogeneous Accelerator Card\nUp to 7 single-width half-height half-length accelerator cards\nMore"
+    },
+    "scraped_at": "2025-08-14T02:01:54.078017",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2288h-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5298 V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5298-v7",
+    "tech_specs": {
+      "Form Factor\n4U rack server\nProcessor\n2 x 4th/5th Gen Intel® Xeon® Scalable processors, with up to 385W TDP per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x DDR5 DIMMs, with up to 5600 MT/s speed\nLocal Storage\nVarious drive configurations with hot-swappable capability": "10 x 2.5″ SAS/SATA drives*\n60 x 3.5″ SAS/SATA drives\n8 x NVMe SSDs\nDual M.2 SSDs\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60\nSupercapacitors for cache data protection from power failures\nRAID level migration, drive roaming, self-diagnosis, and remote web settings\nNetwork\n2 x FlexIO slots dedicated for 2 x OCP 3.0 NICs, allowing for on-demand selection and hot swap\nPCle Expansion\nUp to 6 x PCIe expansion slots, including one dedicated for the RAID controller card and 2 x FlexIO expansion slots dedicated for OCP 3.0 NICs, and supporting PCIe 5.0\nFan Module\nComputing area: 8 x hot-swappable counter-rotating fan modules in N+1 redundancy\nStorage area: 4 x hot-swappable counter-rotating fan modules in N+1 redundancy\nPSU\n1500 W/2000 W/3000 W Platinum/Titanium hot-swappable PSUs in 1+1 redundancy\nThe Intelligent Baseboard Management Controller (iBMC) chip integrates one dedicated management GE network port, providing comprehensive management features such as fault diagnosis, automated O&M, and hardware security hardening.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:02:05.671653",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5298-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2024/06/5298-V7-banner-mb.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5288 V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5288-v7",
+    "tech_specs": {
+      "Form Factor\n4U rack server\nProcessor\n1 or 2 x 4th/5th Gen Intel® Xeon®Scalable processors, with up to 385 W TDP per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x DDR5 DIMMs, with up to 5600 MT/s speed\nLocal Storage\nHot-swappable drive configurations": "• 4 x 2.5ʺ SAS/SATA drives/SSDs\n• 24 to 44 x 3.5ʺ SAS/SATA drives\n• 4 x NVMe SSDs\nFlash storage:\n• 2 x M.2 SSDs\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60; optional supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nExpansion capability for multiple types of networks\nOCP 3.0 NICs are supported. The two FlexIO card slots support two OCP 3.0 NICs, which can be configured as required. Hot swap and PCIe 5.0 are supported\nPCIe Expansion\nUp to 10 x PCIe slots, including 2 x FlexIO slots dedicated for OCP 3.0 NICs and 10 x PCIe expansion slots. PCIe 5.0 is supported\nGPU Card\n8 x single-width GPU cards*\nFan Module\n6 or 8 x hot-swappable counter-rotating fans in N+1 redundancy\nPower Supply\n900 W/1200 W/1500 W/2000 W/3000 W Platinum/Titanium hot-swappable PSUs in 1+1 redundancy\nMore"
+    },
+    "scraped_at": "2025-08-14T02:02:18.796243",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5288-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/play-icon.png"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5288 V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5288-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 5288 V6\nForm Factor\n4U Rack Server\nProcessors\n1/2 3rd Generation Intel® Xeon® scalable processor (Ice Lake) (8300 / 6300 / 5300 / 4300 Series) , up to 270W\nChip Set\nIntel® C621A\nMemory\n32 DDR4 memory slots, up to 3200 MT/s; Up to 16 Intel® Optane TM Persistent Memory 200 Series, up to 3200MT/s\nLocal Storage\nVarious hard disk configurations are supported. The hard disks are hot swappable": "· 36 to 44 3.5-inch SAS/SATA HDDs and 4 NVMe SSDs\n· 24 x 3.5-inch SAS/SATA front hard disks\n· 4 3.5-inch SAS/SATA internal hard disks\n· 16 3.5-inch SAS/SATA hard disks and four 2.5-inch SAS/SATA/NVMe rear hard disks\n· 12 3.5-inch SAS/SATA disks and eight 2.5-inch rear hard disks (4 x 2.5″ HDDs + 4 x 2.5″ SAS/SATA/NVMe)\nFlash storage:\n· Dual M.2 SSDs\nRAID Support\nSupports RAID 0, 1, 5, 50, 6, and 60, cache supercapacitor protection, RAID level migration, disk roaming, self-diagnosis, and web-based remote configuration, and multiple network expansion capabilities\nNetwork\nOCP 3.0 NIC\nThe two FLEX I/O card slots support two OCP 3.0 NICs, which can be configured as required\nSupports multiple OCP 3.0 NICs\nSupports hot swap\nMore"
+    },
+    "scraped_at": "2025-08-14T02:02:32.095371",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5288-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5288 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5288-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 5288 V5\nForm Factor\n4U rack server\nProcessors\n1 or 2 1st Generation Intel® Xeon® Scalable processors (3100/4100/5100/6100/8100 series), up to 205W\n1 or 2 2nd Generation Intel® Xeon® Scalable processors (3200/4200/5200/6200/8200 series), up to 205W\nMemory\n24 DDR4 DIMM slots, 2933 MT/s; up to 12 Intel® Optane™ PMem modules (100 series), 2666 MT/s\nInternal Storage\nFront": "• 24 x 3.5-inch SAS/SATA hard drives\nEmbedded:\n• 4 x 3.5-inch SAS/SATA hard drives\nRear:\n• 16 x 3.5-inch SAS/SATA hard drives\n• 16 x 3.5-inch SAS/SATA hard drives + 4 x 2.5-inch SAS/SATA hard drives or NVMe SSDs\n• 14 x 3.5-inch SAS/SATA hard drives (or 4 NVMe SSDs for the NVMe model) + 4 x 2.5-inch SAS/SATA hard drives or NVMe SSDs (this configuration does not support internal hard disk and I/O module 1)\nFlash storage:\n• Two M.2 SSDs\nRAID\nRAID 0, 1, 5, 50, 6, or 60; optional supercapacitor to protect cache data from power failures; RAID level migration, drive roaming, self-diagnosis, and web-based remote configuration\nNetwork Ports\n• LOM: 2 x 10 GE + 2 x GE ports\n• Flexible NIC: 2 x GE, 4 x GE, 2 x 10 GE, or 1/2 x 56G FDR IB ports\nMore"
+    },
+    "scraped_at": "2025-08-14T02:02:43.952610",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5288-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2298 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2298-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 2298 V5\nForm Factor\n2U rack server\nProcessors\n1 or 2 1st Generation Intel® Xeon® Scalable processors (3100/4100/5100/6100/8100 series), up to 205W\n1 or 2 2nd Generation Intel® Xeon® Scalable processors (3200/4200/5200/6200/8200 series), up to 205W\nMemory\n12 DDR4 DIMM slots, up to 2,933 MT/s\nInternal Storage\nFront": "• 24 x 3.5-inch SAS/SATA HDDs, hot-pluggable, power-on/-off on a per HDD basis\nRear:\n• 4 x 2.5-inch SAS/SATA/NVMe hard drives, hot-pluggable\nFlash storage:\n• 2 x M.2 SSDs\nRAID\n4 rear SAS/SATA HDDs can be configured to support RAID 0, 1, 10, and 1E. RAID-level migration, disk roaming, self-diagnosis, and web-based remote configuration are supported\nNetwork Ports\n• LOM: 2 x 10 GE + 2 x GE ports\n• Flexible Network Interface Card (NIC): 1 x OCP 2.0 standard NIC\nPCIe Expansion\nUp to 5 PCIe 3.0 expansion slots, including 1 PCIe card slot dedicated for the RAID controller card and 1 slot for flexible OCP 2.0 standard NIC\nFan Modules\n5 hot-swappable fan modules, with support for N+1 redundancy\n2 hot-swappable PSUs, with support for 1+1 redundancy. Supported options include:\nMore"
+    },
+    "scraped_at": "2025-08-14T02:02:55.797569",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2298-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 2488 V5\nForm Factor\n2U rack server\nProcessors\n2 or 4 1st Generation Intel® Xeon® Scalable processors (5100/6100/8100 series), up to 205 W\n2 or 4 2nd Generation Intel® Xeon® Scalable processors (5200/6200/8200 series), up to 205 W\nMemory\n32 DDR4 DIMM slots, 2933 MT/s; up to 8 Intel® Optane™ PMem modules (100 series), 2666 MT/s\nInternal Storage\nSupports hot-swappable hard drives with the following configuration options": "8 x 2.5-inch SAS/SATA HDDs on the front\n25 x 2.5-inch SAS/SATA HDDs on the front\n8 x 2.5-inch NVMe SSDs and 16 x 2.5-inch SAS/SATA HDDs on the front\nFlash storage:\n2 x M.2 SSDs\nRAID Support\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60 Configured with a supercapacitor for cache power-off protection Supports RAID level migration, drive roaming\nLOM Network Ports\n2 x GE + 2 x 10 GE ports\nPCIe Expansion\nUp to 9 PCIe 3.0 slots\nFan Modules\n4 hot-swappable fan modules, providing protection against single-fan failures\nPower Supply Units\n2 hot-swappable PSUs, with support for 1+1 redundancy. The following PSUs are supported:\n2,000W AC Platinum PSUs\n1,500W AC Platinum PSUs\nMore"
+    },
+    "scraped_at": "2025-08-14T02:03:07.579054",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488h-v7",
+    "tech_specs": {
+      "Form Factor\n2U rack server\nProcessor\n2 or 4 x 4th Gen Intel® Xeon® Scalable processors with TDP up to 350 W per processor\nChipset\nEmmitsburg PCH\nMemory\n64 x DDR5 DIMMs\nLocal Storage\nHot-swappable drives configurations": "• 8 x front 2.5″ SAS/SATA drives\n• 25 x front 2.5″ SAS/SATA drives\n• 4 x front 2.5″ SAS/SATA drives and 8 x NVMe SSDs\nFlash storage: 2 x M.2 SSDs, supporting hardware RAID\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60; supercapacitors for cache data protection from power failures;\nRAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nMultiple network expansion capabilities\n1 x OCP 3.0 NIC, supporting hot swap\nPCIe Expansion\nUp to 10 x PCIe slots, including 1 x FlexIO slot dedicated for the OCP 3.0 NIC and 9 x standard PCIe slots\nFan Module\n6 x hot-swappable counter-rotating fans in N+1 redundancy\nPSU\n900 W/1200 W/1500 W/2000 W/3000 W Platinum/Titanium hot-swappable PSUs in 1+1 redundancy\nManagement\nThe iBMC chip integrates one dedicated management GE network port, providing comprehensive management features such as fault diagnosis, automatic O&M, and hardware security hardening.\n• The iBMC supports standard interfaces such as Redfish, SNMP, and IPMI 2.0, provides a remote management user interface based on HTML5/VNC KVM; supports out-of-band management functions such as monitoring, diagnosis, configuration, Agentless, and remote control for simplified management.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:03:19.858979",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/banner-mb-8.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488h-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 2488H V6\nForm Factor\n2U Rack Server\nProcessors\n2 or 4 x 3rd Gen Intel® Xeon® Scalable processors (5300/6300/8300 series), TDP up to 250 W\nMemory\n48 DDR4 DIMM slots, up to 3200 MT/s; up to 24 Intel® Optane™ PMem modules (200 series), 2666 MT/s\nLocal Storage\nSupports hot-pluggable drives with the following configuration options": "• 8 x 2.5” front SAS/SATA/NVME drives\n• 24 x 2.5” front SAS/SATA drives\n• 25 x 2.5” front SAS/SATA drives\n• 4 x 2.5” front SAS/SATA drives and 8 x 2.5” NVMe SSDs\n• 4 x 2.5” front SAS/SATA drives and 16 x 2.5” NVMe SSDs\nFlash storage:\n• 2 x M.2 SSDs\nRAID Support\nRAID 0, 1, 5, 50, 6, or 60; optional supercapacitor for cache power-off protection; RAID-level migration, drive roaming, self-diagnosis, and web-based remote configuration\nPCIe Expansion\nUp to 11 PCIe 3.0 slots, including one dedicated PCIe slot for the OCP 3.0 NIC\nHeterogeneous Accelerator Cards\n2 dual-slot FHFL or 4 single-slot HHHL GPU heterogeneous accelerator cards\nFan Modules\n6 hot-swappable fan modules in N+1 redundancy mode\nMore"
+    },
+    "scraped_at": "2025-08-14T02:03:31.678119",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488h-v6-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 2488H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-2488h-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 2488H V5\nForm Factor\n2U rack server\nProcessors\n2 or 4 1st Generation Intel® Xeon® Scalable processors (5100/6100/8100 series), up to 205 W\n2 or 4 2nd Generation Intel® Xeon® Scalable processors (5200/6200/8200 series), up to 205 W\nMemory\n48 DDR4 DIMM slots, 2,933 MT/s; up to 24 Intel® Optane™ PMem modules (100 series), 2666 MT/s\nInternal Storage\nSupports the following hard drive configuration options": "8 x 2.5-inch SAS/SATA HDDs on the front\n25 x 2.5-inch SAS/SATA HDDs on the front\n24 x 2.5-inch SAS/SATA HDDs on the front\n8 x 2.5-inch NVMe SSDs and 16 x 2.5-inch SAS/SATA HDDs on the front\n24 x 2.5-inch NVMe SSDs\nSupports flash storage: 2 M.2 SSDs\nRAID Support\nSupports RAID 0, 1, 5, 6, 10, 50, or 60\nSupports a supercapacitor for cache power-off protection\nSupports functions such as RAID level migration, drive roaming\nLOM Network Ports\n2 x GE + 2 x 10 GE ports\nPCIe Expansion\nUp to 11 PCIe 3.0 slots\nFan Modules\n4 hot-swappable fan modules with optional N+1 redundancy\nMore"
+    },
+    "scraped_at": "2025-08-14T02:03:43.546058",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-2488h-v5-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/3d%E6%A8%A1%E5%9E%8B%E9%BB%98%E8%AE%A4.svg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5885H V7",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5885h-v7",
+    "tech_specs": {
+      "Form Factor\n4U rack server\nProcessor\n2 or 4 x 4th Gen Intel® Xeon® Scalable processors (Sapphire Rapids) with TDP up to 350 W per processor\nChipset\nEmmitsburg PCH\nMemory\n64 x DDR5 DIMMs\nLocal Storage\nHot-swappable drive configurations": "• 8, 24, 25, or 50 x front 2.5″ SAS/SATA drives\n• 4 x front 2.5″ SAS/SATA drives and 8 x NVMe SSDs\n• 24 x front NVMe SSDs\n• 25 x front 2.5″ SAS/SATA drives and 24 x front NVMe SSDs\n• 36 x front E1.S SSDs\n• Up to 52 x 2.5″ drives\nFlash storage:\n• 2 x M.2 SSDs, supporting hardware RAID\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60; supercapacitors for cache data protection from power failures; RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nMultiple network expansion capabilities\n1 x OCP 3.0 NIC, supporting hot swap\nPCIe Expansion\nUp to 22 x PCIe slots, including 1 x FlexIO slot dedicated for the OCP 3.0 NIC and 21 x standard PCIe slots\nGPU Card\n4 x dual-width GPU cards\n14 x single-width GPU cards\nFan Module\n6 or 8 x hot-swappable fan modules in N+1 redundancy\n\n\nMore"
+    },
+    "scraped_at": "2025-08-14T02:03:55.164269",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5885h-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2022/09/play-icon.png"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5885H V6",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5885h-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 5885H V6\nForm Factor\n4U rack server\nProcessors\n2 or 4 x 3rd Gen Intel® Xeon® Scalable processors (5300/6300/8300 series), TDP up to 250 W\nMemory\n48 x DDR4 DIMM slots, up to 3200 MT/s; up to 24 x Intel® Optane™ PMem modules (200 series), 2666 MT/s\nLocal Storage\nSupports hot-swappable drives with the following configuration options": "• 8 x 2.5” front SAS/SATA drives\n• 24 x 2.5” front SAS/SATA drives\n• 25 x 2.5” front SAS/SATA drives\nFlash storage:\n• 2 x M.2 SSDs\nRAID Support\nRAID 0, 1, 10, 5, 50, 6, or 60; optional supercapacitor for cache power-off protection; RAID-level migration, drive roaming, self-diagnosis, and web-based remote configuration\nPCIe Expansion\nUp to 19 x PCIe 3.0 slots, including one dedicated PCIe slot for the OCP 3.0 NIC\nGPU Cards\n4 x FHFL dual-slot GPU heterogeneous accelerators or 8 x FHHL single-slot GPU accelerators\nFan Modules\n5 x hot-swappable fan modules in N+1 redundancy mode\n4 x hot-swappable PSUs in N+N redundancy mode and the following configuration options:\n• 2000 W AC Platinum PSUs\n1800 W (input: 200 V to 220 V AC, or 192 V to 200 V DC)\nMore"
+    },
+    "scraped_at": "2025-08-14T02:04:08.479208",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5885h-v6-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "FusionServer 5885H V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/fusionserver-5885h-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer 5885H V5\nForm Factor\n4U rack server\nProcessors\n2 or 4 1st Generation Intel® Xeon® Scalable processors (5100/6100/8100 series), up to 205 W\n2 or 4 2nd Generation Intel® Xeon® Scalable processors (5200/6200/8200 series), up to 205 W\nMemory\n48 DDR4 DIMM slots, 2,933 MT/s; up to 24 Intel® Optane™ PMem modules (100 series), 2666 MT/s\nInternal Storage\nSupports hot-swappable hard drives with the following configuration options": "• 8 x 2.5-inch SA\nSupports hot-swappable hard drives with the following configuration options:\n• 8 x 2.5-inch SAS/SATA hard drives (front)\n• 24 x 2.5-inch SAS/SATA hard drives (front)\n• 25 x 2.5-inch SAS/SATA hard drives (front)\n• 16 x 2.5-inch SAS/SATA hard drives and 8 x 2.5-inch NVMe SSDs (front)\n• 24 x 2.5-inch NVMe SSDs (front)\nFlash storage:\n• Two M.2 SSDs\nS/SATA hard drives (front)\n• 24 x 2.5-inch SAS/SATA hard drives (front)\n• 25 x 2.5-inch SAS/SATA hard drives (front)\n• 16 x 2.5-inch SAS/SATA hard drives and 8 x 2.5-inch NVMe SSDs (front)\n• 24 x 2.5-inch NVMe SSDs (front)\nFlash storage:\n• Two M.2 SSDs\nMore"
+    },
+    "scraped_at": "2025-08-14T02:04:20.122045",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-5885h-v5-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack Servers",
+    "name": "KunLun 9008 V5",
+    "link": "https://www.xfusion.com/en/product/rack-server/kunlun-9008-v5",
+    "tech_specs": {
+      "Parameter\nDescription\nParameters\n9008 V5\nForm Factor\n8-socket server\nMemory\n96 DDR4 DIMM slots and up to 18 TB memory capacity\nInternal Storage\nUp to 48 x 2.5-inch SAS/SATA HDDs or 40 x 2.5-inch NVMe SSDs; supports external storage of M.2 drives (supporting hardware RAID).\nRAID\nRAID 0, 1, 10, 5, 50, 6, or 60; optional supercapacitor for power-off protection for the cache; RAID state transition; RAID configuration memory; self – diagnosis; web-based remote configuration\nLOM Network Ports\n2 x 10GE + 2 x GE ports\nPCIe Expansion\nUp to 18 PCIe 3.0 slots\nPartitioning\nPhysical partitioning K-Par": "2 physical partitions are supported.\nManagement\nProvides comprehensive management features such as fault diagnosis, automated O&M, and hardware security hardening; supports mainstream standard interfaces such as SNMP and IPMI 2.0, facilitating integration with third-party management software; provides remote management interfaces based on HTML5 and VNC KVM; supports features such as Agentless to simplify management.\nOptionally configured with FusionDirector management software to provide advanced management features such as automated firmware upgrade, enabling smart and automated entire-lifecycle management\nFan Modules\n8 hot-swappable counter-rotating fan modules in N+1 redundancy mode\nDimensions (H x W x D)\nCabinet: 2000 mm x 600 mm x 1550 mm (78.74 in. x 23.62 in. x 61.02 in.);\nSCE: 325.4 mm x 447 mm x 840 mm (12.81 in. x 17.60 in. x 33.07 in.)\nMore"
+    },
+    "scraped_at": "2025-08-14T02:04:32.370780",
+    "datasheet_link": "https://www.xfusion.com/en/resource/kunlun-9008-v5-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5500 V6",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5500-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nModel\nFusionServer G5500 V6\nForm Factor\n4U AI Server\nProcessor\n2 x 3rd Generation Intel® Xeon® Scalable processors (Ice Lake), up to 270 W TDP per processor\nChipset\nIntel C621A\nMemory\n32 x DDR4 DIMM slots, up to 3200 MT/s\nLocal Storage\nSupports hot-swappable drives in the following configurations": "• Up to 24 x 2.5/3.5-inch SAS/SATA drives;\n• Up to 4 x NVMe SSDs;\n• 2 x M.2 SSDs\nRAID\nRAID 0, 1, 10, 5, 50, 6, or 60; Supercapacitors for cache data protection from power failures; RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nGPU Card\n8 x FHFL double-width GPU cards\nNetwork\nMultiple network expansion capabilities; 3 x OCP 3.0 NICs, which can be configured as required and supports orderly hot swap\nPCIe Expansion\nUp to 16 x PCIe expansion slots, including 12 x PCIe 4.0 x16 standard slots, 3 x OCP slots, and 1 x built-in RAID card slot\nFan Module\n6 or 8 x hot-swappable counter-rotating fans in N+1 redundancy\nPSU\n4 x 2000 W Platinum/Titanium, 2600 W Platinum, or 3000 W Titanium hot-swappable PSUs in N+N/N+M redundancy\n\n\nMore"
+    },
+    "scraped_at": "2025-08-14T02:06:39.329228",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5500-v6-datasheet",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5500 V7",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5500-v7",
+    "tech_specs": {
+      "Form Factor\n4U AI server\nProcessor\n2 x 4th/5th Gen Intel® Xeon® Scalable processors, with up to 385 W TDP per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x DIMMs at up to 5600 MT/s, up to 256 GB per DIMM\nLocal Storage\nHot-swappable and flexible drive configurations": "• Up to 24 x 2.5″/3.5″ SAS/SATA drives\n• Up to 12 x NVMe SSDs and 8 x SATA/SAS drives\nFlash storage: dual M.2 SSDs\nRAID\nRAID 0, 1, 10, 5, 50, 6, and 60; supercapacitors for cache data protection against power failures;\nRAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nGPU Card\n10 x dual-width GPU cards\nNetwork\nMultiple network expansion capabilities, 3 x OCP 3.0 NICs\nPCIe Expansion\nUp to 14 x standard PCIe 5.0 slots, including 10 x dedicated slots for GPU cards\nFan Module\n6 or 8 x hot-swappable counter-rotating fan modules in N+1 redundancy\nPSU\n4 x 2000 W Platinum/Titanium, 2600 W Platinum, or 3000 W Titanium hot-swappable PSUs in N+N/N+M redundancy\nManagement\nThe iBMC chip integrates one dedicated management GE network port, providing comprehensive management features such as fault diagnosis, automatic O&M, and hardware security hardening.\n• The iBMC supports standard interfaces such as Redfish, SNMP, and IPMI 2.0, provides a remote management user interface based on HTML5/VNC KVM; supports out-of-band management functions such as monitoring, diagnosis, configuration, Agentless, and remote control for simplified management.\n• It is optional to configure the FusionDirector management software that provides advanced management features such as five intelligent technologies, enabling intelligent, automatic, visualized, and refined management throughout the lifecycle.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:06:53.037259",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5500-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/G5500-V7-mb-banner.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G5200 V7",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g5200-v7",
+    "tech_specs": {
+      "Form Factor\n4U AI server\nProcessor\n4th or 5th Gen Intel® Xeon® Scalable processors with 350 W TDP per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x DDR5 DIMMs, with up to 5600 MT/s speed\nLocal Storage\nHot-swappable drives in the following configurations": "• Up to 28 x 3.5ʺ SAS/SATA drives\n• Up to 4 x NVMe SSDs\nFlash storage:\n• 2 x M.2 SSDs\nRAID\nRAID 0, 1, 10, 1E, 5, 50, 6, or 60; supercapacitors for cache data protection from power failures; RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nGPU Card\n4 x dual-width or 10 x single-width GPU cards\nNetwork\nMultiple network expansion capabilities\n2 x OCP 3.0 NICs, which can be configured as required and supports orderly hot swap and PCIe 5.0\nPCIe Expansion\nUp to 10 x standard PCIe slots; supporting PCIe 5.0\nFan Module\n8 x hot-swappable counter-rotating fan modules in N+1 redundancy\nPSU\n4 x 1500 W Platinum, or 2000 W Platinum/Titanium hot-swappable PSUs with PSU1 and PSU2 in 1+1 redundancy and PSU3 and PSU4 in 1+1 redundancy\nThe iBMC chip integrates one dedicated management GE network port, providing comprehensive management features such as fault diagnosis, automatic O&M, and hardware security hardening\nMore"
+    },
+    "scraped_at": "2025-08-14T02:07:06.628276",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g5200-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/g5200-v7-banner-mb.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "AI Servers",
+    "name": "FusionServer G8600 V7",
+    "link": "https://www.xfusion.com/en/product/heterogeneous-server/fusionserver-g8600-v7",
+    "tech_specs": {
+      "Form Factor\n8U AI server\nProcessor\n2 x 4th/5th Gen Intel® Xeon® Scalable processors, with up to 385 W TDP per processor\nChipset\nEmmitsburg PCH\nMemory\n32 x DIMMs, up to 256 GB per DIMM, up to 5600 MT/s\nLocal Storage\nHot-swappable drive configurations": "• Up to 8 x 2.5″ SAS/SATA drives\n• Up to 8 x NVMe SSDs\n• 2 x M.2 SSDs\nRAID\nRAID 0, 1, 10, 5, 50, 6, or 60; supercapacitors for cache data protection from power failures;\nRAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nGPU Module\n8 x GPU modules\nNetwork\n1 x OCP 3.0 NICs, which can be configured as required and supports orderly hot swap\nPCIe Expansion\nUp to 13 x PCIe slots, including 12 x standard PCIe slots, 1 x OCP 3.0 slots\nFan Module\nGPU: 10 x 54 V fan modules in N+1 redundancy; CPU: 5 x 12 V fan modules in N+N redundancy\nPSU\n• 54V\n6 x 3000 W Titanium hot-swappable PSUs，Cabinet-level N+N redundancy backup with 2+2, 3+1, 3+3, 4+2, and 5+1 configuration based on the load is supported.\n• 12V\n2 x 3000 W Titanium or 2000 W Titanium/Platinum hot-swappable PSUs in 1+1 redundancy\n\n\nMore"
+    },
+    "scraped_at": "2025-08-14T02:07:19.918017",
+    "datasheet_link": "https://www.xfusion.com/en/resource/fusionserver-g8600-v7-datasheet",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2023/04/G8600-V7-%E9%A1%B6%E9%83%A8banner-%E7%A7%BB%E5%8A%A8%E7%AB%AF.jpg"
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack-Scale Servers",
+    "name": "DH122E V6",
+    "link": "https://www.xfusion.com/en/product/rack-scale-servers/dh122e-v6",
+    "tech_specs": {
+      "Parameter\nDescription\nProcessors\n2 x 3rd Gen Intel®Xeon®Scalable processors (Intel Whitley Platform all series Ice Lake processors), with up to 300 W TDP per processor\nChipset\nIntel C621A\nMemory\nUp to 32 x DDR4 DIMMs, up to 16 x DDR4 DIMMs when the memory liquid cooling is configured\nLocal Storage\nMultiple hot-swappable drives with the following configurations": "Up to 2 x SAS/SATA drives and 10 x SAS/SATA/NVMe drives\nRAID Support\nRAID 0, 1, 10, 5, 50, 6, or 60, supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nExpansion capability of multiple types of networks\nPCIe Expansion\n4 x PCIe slots, including 1 x dedicated PCIe slot for RAID controller cards,and 3 x standard PCIe 4.0 slots\nFan Modules\n7 x hot-swappable counter-rotating fan modules in N+1 redundancy\nCold Plate\nOne liquid-cooling plate can be configured. The specifications are as follows:\n2 x CPUs and VRD liquid cooling, with liquid cooling ratio up to 65%\n2 x CPUs, 16 x DIMMs, and VRD liquid cooling, with the liquid cooling ratio up to 80%\nPower Supply\nOne DC power module can be configured. The specifications are as follows:\n1600 W PSU\n3000 W PSU\nManagement\nThe management system includes the BMC management systems of server nodes, the cabinet management system, and the management systems of switching nodes.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:08:25.993572",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "Rack-Scale Servers",
+    "name": "DH120E V7",
+    "link": "https://www.xfusion.com/en/product/rack-scale-servers/fusionpod-dh120e-v7",
+    "tech_specs": {
+      "Parameter\nDescription\nProcessor\nTwo 4th generation Intel® Xeon® Scalable processors (Intel Eagle Stream Platform all series Sapphire Rapids CPUs), with up to 350 W TDP per processor\nChipset\nEmmitsburg PCH\nMemory\nA maximum of 32 DDR5 DIMMs with up to 4800 MT/s memory speed; memory liquid cooling (optional)\nLocal Storage\nHot-swappable drive configurations": "Up to 12 SAS/SATA/NVMe drives\nRAID\nRAID 0, 1, 10, 5, 50, 6, or 60; supercapacitor for cache data power failure protection, RAID level migration, drive roaming, self-diagnosis, and remote web-based configuration\nNetwork\nMultiple network expansion capabilities; up to four standard HHHL NIC slots, which can be configured as required\nPCIe Expansion\nUp to four PCIe 5.0 x16 HHHL slots and one HHHL slot for standard RAID controller card/one self-developed RAID controller card\nFan module\nSeven fans, supporting N+1 redundancy\nCold Plate\nOne cold plate for liquid cooling of either of the following configurations:\nTwo CPUs and VRD\nTwo CPUs, 32 DIMMs, and VRD\nPower Supply\nOne 3000 W DC PSU\nManagement\nThe iBMC chip integrates one dedicated management GE network port, providing comprehensive management features such as fault diagnosis, automatic O&M, and hardware security hardening.\nThe iBMC supporting standard interfaces such as Redfish, SNMP, and IPMI 2.0, providing a HTML5/VNC KVM-based remote management interface, and supporting out-of-band management functions such as monitoring, diagnosis, configuration, Agentless, and remote control for simplified management.\nMore"
+    },
+    "scraped_at": "2025-08-14T02:08:36.962401",
+    "datasheet_link": "",
+    "image_url": ""
+  },
+  {
+    "brand": "XFusion",
+    "category": "FusionPoD for AI",
+    "name": "FusionPoD for AI",
+    "link": "https://www.xfusion.com/en/product/rack-scale-servers/fusionpod-for-ai",
+    "tech_specs": {},
+    "scraped_at": "2025-08-14T02:08:59.793097",
+    "datasheet_link": "",
+    "image_url": "https://www.xfusion.com/wp-content/uploads/2024/05/%E9%A1%B6%E9%83%A8banner-pc%E7%AB%AF.jpg"
+  }
+]

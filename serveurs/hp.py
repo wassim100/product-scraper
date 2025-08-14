@@ -30,7 +30,8 @@ DELAY_BETWEEN_PAGES = 5 # Délai entre chaque catégorie
 
 # --- SETUP SELENIUM ---
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-# from database.mysql_connector import save_to_database  # Désactivé temporairement pour les tests
+from database.mysql_connector import save_to_database
+ENABLE_DB = os.getenv("ENABLE_DB", "false").lower() == "true"
 
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
@@ -235,13 +236,15 @@ if __name__ == "__main__":
             json.dump(all_products_data, f, ensure_ascii=False, indent=4)
         print(f"\n🎯 Extraction terminée. {len(all_products_data)} produits au total enregistrés dans {OUTPUT_JSON}")
 
-        # print("\n💾 Tentative de sauvegarde en base de données...")
-        # try:
-        #     save_to_database(OUTPUT_JSON, "serveurs", BRAND)
-        #     print("✅ Sauvegarde en base de données réussie !")
-        # except Exception as e:
-        #     print(f"❌ Erreur lors de la sauvegarde en base de données : {e}")
-        #     print("💡 Assurez-vous que votre serveur MySQL est démarré et configuré correctement.")
-        print("💾 Sauvegarde en base de données désactivée pour les tests.")
+        if ENABLE_DB:
+            print("\n💾 Tentative de sauvegarde en base de données...")
+            try:
+                save_to_database(OUTPUT_JSON, "serveurs", BRAND)
+                print("✅ Sauvegarde en base de données réussie !")
+            except Exception as e:
+                print(f"❌ Erreur lors de la sauvegarde en base de données : {e}")
+                print("💡 Assurez-vous que votre serveur MySQL est démarré et configuré correctement.")
+        else:
+            print("ℹ️ Sauvegarde BD désactivée (ENABLE_DB=false)")
     else:
         print("\n⚠️ Aucun produit n'a été extrait. Le fichier JSON n'a pas été créé.")

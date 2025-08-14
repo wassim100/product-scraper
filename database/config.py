@@ -5,7 +5,8 @@ DB_CONFIG = {
     'host': 'localhost',
     'database': 'scraping_db',
     'user': 'root',
-    'password': '',  # Remplacez par votre mot de passe MySQL si nécessaire
+    'password': 'wassim',  # Mot de passe MySQL
+    'port': 3306,
     'charset': 'utf8mb4',
     'autocommit': True
 }
@@ -25,6 +26,7 @@ DB_CONFIG = {
 DB_CONFIG_NO_DB = {
     'host': 'localhost',
     'user': 'root',
-    'password': '',  # Remplacez par votre mot de passe MySQL si nécessaire
+    'password': 'wassim',  # Mot de passe MySQL
+    'port': 3306,
     'charset': 'utf8mb4'
 }

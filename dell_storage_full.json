@@ -11,7 +11,7 @@
             "Capacité brute du rack": "Jusqu’à 16",
             "Disque SSD de cache": "De 60 To à 9,2 Po"
         },
-        "scraped_at": "2025-08-01T09:53:43.478491",
+        "scraped_at": "2025-08-14T02:09:53.360238",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/objectscale-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/objectscale/x560/dell-objectscale-x560-24x3-5-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -27,7 +27,7 @@
             "Capacité brute du rack": "Jusqu’à 14",
             "Disque SSD de cache": "De 2,8 à 16,8 Po"
         },
-        "scraped_at": "2025-08-01T09:53:44.599626",
+        "scraped_at": "2025-08-14T02:09:54.447933",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/objectscale-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/ecs/dell-ecs-ex5000-ff.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -43,7 +43,7 @@
             "Capacité brute du rack": "2,4 Po",
             "Disque SSD de cache": "500"
         },
-        "scraped_at": "2025-08-01T09:56:10.057495",
+        "scraped_at": "2025-08-14T02:12:19.185124",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h17713_dell_emc_unity_xt_series_ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/unity/dellemc-unity/880-880f/dellemc-unity-880-880f-ces-00015lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -59,7 +59,7 @@
             "Capacité brute du rack": "4 Po",
             "Disque SSD de cache": "750"
         },
-        "scraped_at": "2025-08-01T09:56:11.183756",
+        "scraped_at": "2025-08-14T02:12:20.267842",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h17713_dell_emc_unity_xt_series_ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/unity/dellemc-unity/880-880f/dellemc-unity-880-880f-ces-00015lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -75,7 +75,7 @@
             "Capacité brute du rack": "8 Po",
             "Disque SSD de cache": "1 000"
         },
-        "scraped_at": "2025-08-01T09:56:12.308458",
+        "scraped_at": "2025-08-14T02:12:21.336164",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h17713_dell_emc_unity_xt_series_ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/unity/dellemc-unity/880-880f/dellemc-unity-880-880f-ces-00015lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -91,7 +91,7 @@
             "Capacité brute du rack": "16 Po",
             "Disque SSD de cache": "1 500"
         },
-        "scraped_at": "2025-08-01T09:56:13.436473",
+        "scraped_at": "2025-08-14T02:12:22.405110",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h17713_dell_emc_unity_xt_series_ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/unity/dellemc-unity/880-880f/dellemc-unity-880-880f-ces-00015lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -101,13 +101,13 @@
         "link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "name": "PowerStore 500T",
         "tech_specs": {
-            "Stockage": "2 processeurs Intel, 24 cœurs, 2,2 GHz",
+            "Stockage": "2 processeurs Intel Xeon, 24 cœurs, 2,2 GHz",
             "Capacité de nœuds brute": "192 Go",
-            "Nœuds par rack": "6,16 PBe par appliance/24,64 PBe par cluster",
+            "Nœuds par rack": "Jusqu’à 6,16 Poe par appliance ; jusqu’à 24,64 Poe par cluster",
             "Capacité brute du rack": "97 par appliance/388 par cluster",
-            "Disque SSD de cache": "1 000 vols"
+            "Disque SSD de cache": "1 500 vols"
         },
-        "scraped_at": "2025-08-01T09:58:40.141869",
+        "scraped_at": "2025-08-14T02:14:57.476788",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-enterprise-products/storage-systems/powerstore/500t/global-spi/ng/enterprise-storage-powerstore-lf-bestof-500-ng.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -117,13 +117,13 @@
         "link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "name": "PowerStore 1200T",
         "tech_specs": {
-            "Stockage": "4 processeurs Intel, 40 cœurs, 2,4 GHz",
+            "Stockage": "4 processeurs Intel Xeon, 40 cœurs, 2,4 GHz",
             "Capacité de nœuds brute": "384 Go",
             "Nœuds par rack": "5,9 PBe par appliance/23,6 PBe par cluster",
             "Capacité brute du rack": "93 par appliance/372 par cluster",
-            "Disque SSD de cache": "3 000 vols"
+            "Disque SSD de cache": "6 000 vols"
         },
-        "scraped_at": "2025-08-01T09:58:41.263092",
+        "scraped_at": "2025-08-14T02:14:59.622476",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powerstore/delllemc-powerstore-base-bezel-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -133,13 +133,13 @@
         "link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "name": "PowerStore 3200T",
         "tech_specs": {
-            "Stockage": "4 processeurs Intel, 64 cœurs, 2,1 GHz",
+            "Stockage": "4 processeurs Intel Xeon, 64 cœurs, 2,1 GHz",
             "Capacité de nœuds brute": "768 Go",
             "Nœuds par rack": "5,9 PBe par appliance/23,6 PBe par cluster",
             "Capacité brute du rack": "93 par appliance/372 par cluster",
-            "Disque SSD de cache": "4 000 vols"
+            "Disque SSD de cache": "10 000 vols"
         },
-        "scraped_at": "2025-08-01T09:58:42.386697",
+        "scraped_at": "2025-08-14T02:15:00.695108",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powerstore/delllemc-powerstore-base-bezel-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -155,7 +155,7 @@
             "Capacité brute du rack": "93 par appliance/372 par cluster",
             "Disque SSD de cache": "4 000 vols"
         },
-        "scraped_at": "2025-08-01T09:58:43.514069",
+        "scraped_at": "2025-08-14T02:15:01.774903",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powerstore/delllemc-powerstore-base-bezel-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -171,7 +171,7 @@
             "Capacité brute du rack": "93 par appliance/372 par cluster",
             "Disque SSD de cache": "6 000 vols"
         },
-        "scraped_at": "2025-08-01T09:58:44.632236",
+        "scraped_at": "2025-08-14T02:15:02.857248",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powerstore/delllemc-powerstore-base-bezel-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -187,7 +187,7 @@
             "Capacité brute du rack": "93 par appliance/372 par cluster",
             "Disque SSD de cache": "16 000 vols"
         },
-        "scraped_at": "2025-08-01T09:58:45.753132",
+        "scraped_at": "2025-08-14T02:15:03.934309",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powerstore-gen2-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powerstore/delllemc-powerstore-base-bezel-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -203,7 +203,7 @@
             "Capacité brute du rack": "Réduction des données 3,5:1 (Ouvert)",
             "Disque SSD de cache": "2 à 4 contrôleurs"
         },
-        "scraped_at": "2025-08-01T10:01:11.989062",
+        "scraped_at": "2025-08-14T02:17:29.074276",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h16739-20PowerMax-2000-8000-ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powermax/2000/dellemc-powermax2000-les-engine-wh-glamour-ff-bk.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -219,7 +219,7 @@
             "Capacité brute du rack": "Réduction des données 4:1 (Ouvert) ; réduction des données 3:1 (Mainframe)",
             "Disque SSD de cache": "2 à 4 nœuds"
         },
-        "scraped_at": "2025-08-01T10:01:13.112769",
+        "scraped_at": "2025-08-14T02:17:30.162856",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/powermax-2500-8500-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powermax/2500/dell-powermax-2500-3u-iso-ff.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -235,7 +235,7 @@
             "Capacité brute du rack": "Réduction des données 3,5:1 (Ouvert)",
             "Disque SSD de cache": "2 à 16 contrôleurs"
         },
-        "scraped_at": "2025-08-01T10:01:14.237234",
+        "scraped_at": "2025-08-14T02:17:31.244277",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h16739-20PowerMax-2000-8000-ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powermax/8000/dellemc-powermax8000-les-rack-glamour-ff-bk-closeup.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -251,7 +251,7 @@
             "Capacité brute du rack": "Réduction des données 4:1 (Ouvert) ; réduction des données 3:1 (Mainframe)",
             "Disque SSD de cache": "2 à 16 nœuds"
         },
-        "scraped_at": "2025-08-01T10:01:15.373673",
+        "scraped_at": "2025-08-14T02:17:32.329587",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/powermax-2500-8500-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powermax/8000/dellemc-powermax8000-les-rack-glamour-ff-bk-closeup.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -267,7 +267,7 @@
             "Capacité brute du rack": "Jusqu’à 6,336 Po",
             "Disque SSD de cache": "Jusqu’à 9 boîtiers 2U ou 3 boîtiers 5U"
         },
-        "scraped_at": "2025-08-01T10:03:40.998708",
+        "scraped_at": "2025-08-14T02:19:56.920615",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/powervault-me52xx-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powervault/me5212/powervault-me5212-2u-front-top.png?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -283,7 +283,7 @@
             "Capacité brute du rack": "Jusqu’à 6,232 Po",
             "Disque SSD de cache": "Jusqu’à 9 boîtiers 2U ou 3 boîtiers 5U"
         },
-        "scraped_at": "2025-08-01T10:03:42.102024",
+        "scraped_at": "2025-08-14T02:19:58.007475",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/powervault-me52xx-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-enterprise-products/storage-systems/powervault/me5/spi/me5224/powervault-me5224-front-2.png?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -299,7 +299,7 @@
             "Capacité brute du rack": "Jusqu’à 8,064 Po",
             "Disque SSD de cache": "Jusqu’à 3 boîtiers 5U"
         },
-        "scraped_at": "2025-08-01T10:03:43.197253",
+        "scraped_at": "2025-08-14T02:19:59.082788",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/powervault-me52xx-spec-sheet.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powervault/me5284/powervault-me5284-front.jpg?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -315,7 +315,7 @@
             "Capacité brute du rack": "Jusqu’à 5,80 Po",
             "Disque SSD de cache": "Jusqu’à 9 boîtiers 2U ou 3 boîtiers 5U"
         },
-        "scraped_at": "2025-08-01T10:03:44.291452",
+        "scraped_at": "2025-08-14T02:20:00.175219",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powervault-me5-ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powervault/me5012/dellemc-powervault-me5012-lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -331,7 +331,7 @@
             "Capacité brute du rack": "Jusqu’à 5,72 Po",
             "Disque SSD de cache": "Jusqu’à 9 boîtiers 2U ou 3 boîtiers 5U"
         },
-        "scraped_at": "2025-08-01T10:03:45.386655",
+        "scraped_at": "2025-08-14T02:20:01.274964",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powervault-me5-ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-enterprise-products/storage/power-vault/me5224/spi/storage-powervault-me5224-black-bestof-500-ng.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -347,7 +347,7 @@
             "Capacité brute du rack": "Jusqu’à 7,39 Po",
             "Disque SSD de cache": "Jusqu’à 3 boîtiers 5U"
         },
-        "scraped_at": "2025-08-01T10:03:46.486192",
+        "scraped_at": "2025-08-14T02:20:02.364389",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/dell-powervault-me5-ss.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powervault/me5284/powervault-me5284-front.jpg?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -363,7 +363,7 @@
             "Capacité brute du rack": "276 TB - 737 PB",
             "Disque SSD de cache": "Oui"
         },
-        "scraped_at": "2025-08-01T10:11:27.766888",
+        "scraped_at": "2025-08-14T02:27:41.725585",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h15963-ss-powerscale-all-flash-nodes.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/products/storage/powerscale/dell-powerscale-f910-0015lf.psd?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -379,7 +379,7 @@
             "Capacité brute du rack": "115 TB - 307 PB",
             "Disque SSD de cache": "Oui"
         },
-        "scraped_at": "2025-08-01T10:11:28.862555",
+        "scraped_at": "2025-08-14T02:27:42.805213",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h15963-ss-powerscale-all-flash-nodes.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-enterprise-products/storage/power-scale/spi/dell-powerscale-f710-bestof-500-front.png?fmt=png-alpha&wid=173&hei=100&align=0,0"
     },
@@ -395,7 +395,7 @@
             "Capacité brute du rack": "23 To à 15 Po",
             "Disque SSD de cache": "Oui"
         },
-        "scraped_at": "2025-08-01T10:11:29.955910",
+        "scraped_at": "2025-08-14T02:27:43.887097",
         "datasheet_link": "https://www.delltechnologies.com/asset/fr-fr/products/storage/technical-support/h15963-ss-powerscale-all-flash-nodes.pdf",
         "image_url": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-enterprise-products/storage/power-scale/spi/dell-powerscale-f210-bestof-500-front.png?fmt=png-alpha&wid=173&hei=100&align=0,0"
     }

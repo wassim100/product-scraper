@@ -10,6 +10,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from database.mysql_connector import MySQLConnector
+from database.config import DB_CONFIG_NO_DB
 import mysql.connector
 from mysql.connector import Error
 
@@ -18,14 +19,10 @@ def test_mysql_connection():
     print("🔍 Test de connexion MySQL...")
     
     try:
-        # Test de base sans base de données
-        connection = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password=''
-        )
+        # Test avec les identifiants de configuration (sans sélectionner de base)
+        connection = mysql.connector.connect(**DB_CONFIG_NO_DB)
         connection.close()
-        print("✅ MySQL est accessible avec l'utilisateur root sans mot de passe")
+        print(f"✅ MySQL est accessible (host={DB_CONFIG_NO_DB.get('host')}, port={DB_CONFIG_NO_DB.get('port', 3306)})")
         return True
         
     except Error as e:

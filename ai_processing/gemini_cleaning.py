@@ -4,6 +4,11 @@ import logging
 import os
 from typing import Dict, List, Any
 import time
+import argparse
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement depuis un fichier .env (facilite l'usage local)
+load_dotenv()
 
 # Configuration de logging
 logging.basicConfig(level=logging.INFO)
@@ -26,9 +31,24 @@ class GeminiProcessor:
         """
         Nettoie et structure les spécifications techniques avec Gemini de manière robuste.
         """
-        if not raw_specs or not isinstance(raw_specs, dict):
-            logger.warning(f"Spécifications brutes vides ou invalides pour {product_name}. Retourne un dict vide.")
+        if not raw_specs:
+            logger.warning(f"Spécifications brutes vides pour {product_name}. Retourne un dict vide.")
             return {}
+
+        # Accepter aussi string ou JSON string (ex: Epson " | "-joined)
+        if isinstance(raw_specs, str):
+            # Essayer de charger comme JSON si possible
+            specs_str = raw_specs.strip()
+            if specs_str.startswith('{') and specs_str.endswith('}'):
+                try:
+                    raw_specs = json.loads(specs_str)
+                except Exception:
+                    raw_specs = {"Specs": specs_str}
+            else:
+                raw_specs = {"Specs": specs_str}
+        elif not isinstance(raw_specs, dict):
+            logger.warning(f"Format specs inattendu pour {product_name} ({type(raw_specs)}). Conversion textuelle.")
+            raw_specs = {"Specs": str(raw_specs)}
 
         # Convertir les spécifications brutes en une chaîne JSON simple
         specs_json_string = json.dumps(raw_specs, ensure_ascii=False)
@@ -193,15 +213,15 @@ def process_json_file(input_file: str, output_file: str, api_key: str = None):
         logger.error(f"❌ Erreur traitement fichier: {e}")
 
 if __name__ == "__main__":
-    # Test avec un exemple
-    test_specs = {
-        "Processor": "Intel Xeon Gold 6248R @ 3.0GHz",
-        "Memory": "Up to 1TB DDR4",
-        "Storage": "Multiple SSD/HDD options",
-        "Network": "Dual 10GbE ports"
-    }
-    
-    # Nécessite une clé API Gemini
-    # processor = GeminiProcessor()
-    # cleaned = processor.clean_tech_specs(test_specs, "Test Server")
-    # print(json.dumps(cleaned, indent=2))
+    parser = argparse.ArgumentParser(description="Nettoyage/normalisation des specs produits via Gemini")
+    parser.add_argument("--in", dest="input_file", required=True, help="Fichier JSON d'entrée")
+    parser.add_argument("--out", dest="output_file", required=True, help="Fichier JSON de sortie nettoyé")
+    args = parser.parse_args()
+
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        logger.error("❌ GEMINI_API_KEY non définie dans l'environnement")
+        raise SystemExit(2)
+
+    process_json_file(args.input_file, args.output_file, api_key=api_key)
+    logger.info(f"🧹 Nettoyage terminé: {args.output_file}")

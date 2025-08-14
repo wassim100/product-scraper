@@ -3,8 +3,11 @@ import time
 import subprocess
 import logging
 import os
+import sys
 from datetime import datetime
 import json
+import threading
+import re
 
 # Configuration de logging
 log_dir = "logs"
@@ -35,8 +38,9 @@ class ScrapingScheduler:
                 'stockage/lenovo.py'
             ],
             'imprimantes_scanners': [
-                'imprimantes_scanners/hp.py',
-                'imprimantes_scanners/dell.py'
+                'imprimantes_scanners/EpsonPrinters.py',
+                'imprimantes_scanners/EpsonScanner.py',
+                'imprimantes_scanners/hp.py'
             ]
         }
         self.results = {}
@@ -48,29 +52,155 @@ class ScrapingScheduler:
             start_time = datetime.now()
             
             # Exécuter le script
-            result = subprocess.run(
-                ['python', script_path],
-                capture_output=True,
-                text=True,
-                timeout=3600  # Timeout de 1h
-            )
-            
+            env = os.environ.copy()
+            # Forcer l'UTF-8 pour éviter les erreurs d'encodage (emojis, accents)
+            env.setdefault('PYTHONIOENCODING', 'utf-8')
+            env.setdefault('PYTHONUTF8', '1')
+
+            # Utiliser le même interpréteur Python que le processus courant (venv)
+            python_exec = sys.executable or 'python'
+
+            # Préparer un fichier de log par script pour le streaming temps réel
+            timestamp_run = datetime.now().strftime("%Y%m%d_%H%M%S")
+            safe_name = script_path.replace('/', '_').replace('\\', '_').replace('.py', '')
+            script_log_file = os.path.join(log_dir, f"{safe_name}_{timestamp_run}.log")
+            logger.info(f"📝 Sortie temps réel → {script_log_file}")
+
+            captured_lines: list[str] = []
+
+            with open(script_log_file, 'w', encoding='utf-8') as logf:
+                # Indiquer explicitement aux sous-processus qu'ils sont lancés par le scheduler
+                env["RUNNING_UNDER_SCHEDULER"] = "1"
+                process = subprocess.Popen(
+                    [python_exec, script_path],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    encoding='utf-8',
+                    errors='replace',
+                    env=env
+                )
+
+                def stream_output(pipe):
+                    try:
+                        for line in iter(pipe.readline, ''):
+                            logf.write(line)
+                            logf.flush()
+                            captured_lines.append(line)
+                    finally:
+                        try:
+                            pipe.close()
+                        except Exception:
+                            pass
+
+                t = threading.Thread(target=stream_output, args=(process.stdout,))
+                t.daemon = True
+                t.start()
+
+                try:
+                    process.wait(timeout=3600)  # Timeout de 1h
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    t.join(timeout=5)
+                    end_time = datetime.now()
+                    duration = (end_time - start_time).total_seconds()
+                    logger.error(f"⏰ {script_path} a dépassé le timeout")
+                    return {
+                        'status': 'timeout',
+                        'duration': duration,
+                        'error': 'Timeout expired',
+                        'log_file': script_log_file
+                    }
+
+                # S'assurer que le thread a fini d'écrire
+                t.join()
+
             end_time = datetime.now()
             duration = (end_time - start_time).total_seconds()
-            
-            if result.returncode == 0:
+            output_text = ''.join(captured_lines)
+
+            # Essayer de détecter le chemin du JSON dans les sorties
+            raw_json_path = None
+            # Plusieurs scripts impriment ce motif
+            m = re.search(r"Données sauvées en JSON:\s*(.+)", output_text)
+            if not m:
+                # Certains scripts impriment le nom de fichier simple sans chemin
+                m2 = re.search(r"(\w+_servers_full\.json|\w+_storage_full\.json|hp_printers_scanners_schema\.json|epson_\w+\.json)", output_text)
+                if m2:
+                    raw_json_path = os.path.join(os.path.dirname(__file__), "..", m2.group(1))
+            else:
+                raw_json_path = m.group(1).strip()
+
+            # Post-traitement Gemini si activé
+            cleaned_json_path = None
+            if os.getenv('ENABLE_AI_CLEANING', 'false').lower() == 'true' and raw_json_path and os.path.exists(raw_json_path):
+                cleaned_json_path = raw_json_path.replace('.json', '.cleaned.json')
+                try:
+                    logger.info(f"🧹 Gemini: {raw_json_path} → {cleaned_json_path}")
+                    subprocess.check_call([
+                        python_exec,
+                        os.path.join('ai_processing', 'gemini_cleaning.py'),
+                        '--in', raw_json_path,
+                        '--out', cleaned_json_path
+                    ])
+                except subprocess.CalledProcessError as e:
+                    logger.error(f"❌ Échec post-traitement Gemini: {e}")
+                    cleaned_json_path = None
+
+            # Insertion en base avec le JSON nettoyé si demandé
+            if os.getenv('ENABLE_DB', 'false').lower() == 'true':
+                target_json = cleaned_json_path or raw_json_path
+                if target_json and os.path.exists(target_json):
+                    # Choisir la table selon le chemin du script
+                    table = 'imprimantes_scanners'
+                    if 'serveurs' in script_path:
+                        table = 'serveurs'
+                    elif 'stockage' in script_path:
+                        table = 'stockage'
+                    # Alerte si run réduit et désactivation active
+                    max_products = os.getenv('MAX_PRODUCTS')
+                    enable_deact = os.getenv('ENABLE_DEACTIVATE_MISSING', 'true').lower() == 'true'
+                    if max_products and max_products.isdigit() and int(max_products) > 0 and enable_deact:
+                        logger.warning("⚠️ MAX_PRODUCTS>0 et ENABLE_DEACTIVATE_MISSING=true: cela peut désactiver des produits non traités lors d'un run de test.")
+                    try:
+                        logger.info(f"💾 Insertion DB depuis {target_json} dans '{table}' (avec détection de la marque)")
+                        code = (
+                            "import json\n"
+                            "from database.mysql_connector import save_to_database\n"
+                            f"p=r'''{target_json}'''\n"
+                            "brand=None\n"
+                            "try:\n"
+                            "    with open(p,'r',encoding='utf-8') as f:\n"
+                            "        data=json.load(f)\n"
+                            "    brands=set((item.get('brand') or '').strip() for item in data if item.get('brand'))\n"
+                            "    brand=list(brands)[0] if len(brands)==1 else None\n"
+                            "except Exception:\n"
+                            "    brand=None\n"
+                            f"print(save_to_database(r'''{target_json}''', r'''{table}''', brand))\n"
+                        )
+                        subprocess.check_call([python_exec, '-c', code])
+                    except subprocess.CalledProcessError as e:
+                        logger.error(f"❌ Insertion DB échouée: {e}")
+
+            if process.returncode == 0:
                 logger.info(f"✅ {script_path} terminé avec succès en {duration:.0f}s")
                 return {
                     'status': 'success',
                     'duration': duration,
-                    'output': result.stdout
+                    'output': output_text,
+                    'log_file': script_log_file,
+                    'raw_json': raw_json_path,
+                    'cleaned_json': cleaned_json_path
                 }
             else:
-                logger.error(f"❌ {script_path} a échoué: {result.stderr}")
+                logger.error(f"❌ {script_path} a échoué (code {process.returncode}). Voir {script_log_file}")
                 return {
                     'status': 'error',
                     'duration': duration,
-                    'error': result.stderr
+                    'error': f'Exit code {process.returncode}',
+                    'log_file': script_log_file,
+                    'raw_json': raw_json_path,
+                    'cleaned_json': cleaned_json_path
                 }
                 
         except subprocess.TimeoutExpired:
@@ -93,12 +223,20 @@ class ScrapingScheduler:
         logger.info(f"📂 Démarrage de la catégorie: {category}")
         category_results = {}
         
-        for script in self.scripts.get(category, []):
+        # Filtre optionnel de scripts (CSV) via env
+        scripts_filter = os.getenv('SCHEDULER_SCRIPTS')
+        scripts_to_run = self.scripts.get(category, [])
+        if scripts_filter:
+            wanted = {s.strip() for s in scripts_filter.split(',') if s.strip()}
+            scripts_to_run = [s for s in scripts_to_run if s in wanted]
+
+        for script in scripts_to_run:
             if os.path.exists(script):
                 result = self.run_script(script)
                 category_results[script] = result
             else:
-                logger.warning(f"⚠️ Script non trouvé: {script}")
+                abs_path = os.path.abspath(script)
+                logger.warning(f"⚠️ Script non trouvé: {script} (abs: {abs_path})")
                 category_results[script] = {
                     'status': 'not_found',
                     'duration': 0,
@@ -117,8 +255,14 @@ class ScrapingScheduler:
             'categories': {}
         }
         
-        # Exécuter chaque catégorie
-        for category in self.scripts.keys():
+        # Exécuter chaque catégorie (filtrable via env SCHEDULER_CATEGORIES)
+        categories_filter = os.getenv('SCHEDULER_CATEGORIES')
+        categories = list(self.scripts.keys())
+        if categories_filter:
+            wanted = {c.strip() for c in categories_filter.split(',') if c.strip()}
+            categories = [c for c in categories if c in wanted]
+
+        for category in categories:
             try:
                 category_results = self.run_category(category)
                 self.results['categories'][category] = category_results
