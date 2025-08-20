@@ -4,11 +4,59 @@
     "link": "https://epson.com/For-Home/Printers/Inkjet/Expression-Home-XP-4200-Wireless-Color-Inkjet-All-in-One-Printer-with-Scan-and-Copy/p/C11CK65201",
     "name": "Expression Home XP-4200 All-in-One Printer",
     "tech_specs": "Remarkable Print Quality for Home and Borderless Photo Printing | Stress-Free Setup and Operation with 2.4\" Color Display | Easy Wireless Printing from Mobile Devices2 | Individual ink cartridges make it easy to only replace the ink you need",
-    "scraped_at": "2025-08-14T11:39:40.182801",
+    "scraped_at": "2025-08-20T09:53:03.821136",
     "datasheet_link": "https://mediaserver.goepson.com/ImConvServlet/imconv/0c9bf8b6087e325f40dd3d72cb0e54b068dd46c9/original?assetDescr=Expression_Home_XP-4200_Printer_Specification_Sheet_CPD-62071R1.pdf",
     "sku": "C11CK65201",
     "price": "$99.99",
     "image_url": "https://mediaserver.goepson.com/ImConvServlet/imconv/a25ba1100e79d6925ab5c38b746748f5d514703f/515Wx515H?use=productpictures&hybrisId=B2C&assetDescr=XP-4200_headon-output-scan_690x460",
-    "reviews": "(192)"
+    "reviews": "(193)"
+  },
+  {
+    "brand": "EPSON",
+    "link": "https://epson.com/For-Home/Printers/Inkjet/Expression-Home-XP-4205-Wireless-Color-Inkjet-All-in-One-Printer-with-Scan-and-Copy/p/C11CK65202",
+    "name": "Expression Home XP-4205 All-in-One Printer",
+    "tech_specs": "Remarkable Print Quality for Home and Borderless Photo Printing | Stress-Free Setup and Operation with 2.4\" Color Display | Easy Wireless Printing from Mobile Devices2 | Individual ink cartridges make it easy to only replace the ink you need | Replacement Ink Yield ISO pages: 232 - Black: 150, Color: 140; 232 XL – Black: 380",
+    "scraped_at": "2025-08-20T09:53:34.060236",
+    "datasheet_link": "https://mediaserver.goepson.com/ImConvServlet/imconv/748c25cdd18cd7058bf292d01378506885cd60a2/original?assetDescr=Expression_Home_XP-4205_Printer_Specification_Sheet_CPD-62072R2.pdf",
+    "sku": "C11CK65202",
+    "price": "$59.99",
+    "image_url": "https://mediaserver.goepson.com/ImConvServlet/imconv/fdaa1462976dcc1f325e3e119d8a973c124bdf90/515Wx515H?use=productpictures&hybrisId=B2C&assetDescr=XP-4205_headon-output_690x460_n",
+    "reviews": "(100)"
+  },
+  {
+    "brand": "EPSON",
+    "link": "https://epson.com/For-Home/Printers/Inkjet/Expression-Home-XP-5200-Wireless-Color-Inkjet-All-in-One-Printer-with-Scan-and-Copy/p/C11CK61201",
+    "name": "Expression Home XP-5200 All-in-One Printer",
+    "tech_specs": "Remarkable Print Quality for Home and Borderless Photo Printing | Our Fastest Expression Home Printer, Plus 150-Sheet Paper Tray | Stress-Free Setup and Operation with 2.4\" Color Display | Individual ink cartridges make it easy to only replace the ink you need | Replacement Ink Yield ISO Pages: 222 - Black: 210, Color: 185; 222XL - Black: 550",
+    "scraped_at": "2025-08-20T09:54:19.820863",
+    "datasheet_link": "https://mediaserver.goepson.com/ImConvServlet/imconv/d9c6a1227cc29156c39dc5ffa1d79c69f8df47f6/original?assetDescr=Expression_Home_XP-5200_Printer_Specification_Sheet_CPD-62069R1.pdf",
+    "sku": "C11CK61201",
+    "price": "$149.99",
+    "image_url": "https://mediaserver.goepson.com/ImConvServlet/imconv/b9964f6dd92d5d348098f4332f5b0fedc64a6fa2/515Wx515H?use=productpictures&hybrisId=B2C&assetDescr=XP-5200_headon-output_690x460",
+    "reviews": "(143)"
+  },
+  {
+    "brand": "EPSON",
+    "link": "https://epson.com/For-Work/Printers/Inkjet/WorkForce-Pro-WF-3820-Wireless-All-in-One-Printer/p/C11CJ07201",
+    "name": "WorkForce Pro WF-3820 Printer",
+    "tech_specs": "21 (black)/11 (color) ISO ppm† and fast first-page-out | High-precision prints with DURABrite Ultra pigment inks | Designed for high-volume reliability | Auto 2-sided printing and 1-sided, 35-page ADF | Large, 250-sheet paper capacity maximizes productivity",
+    "scraped_at": "2025-08-20T09:54:55.230239",
+    "datasheet_link": "https://mediaserver.goepson.com/ImConvServlet/imconv/5edf30ece5898a14f65b083a1dff753f03069f6a/original?assetDescr=WorkForce%20Pro%20WF-3820%20Printer%20Specification%20Sheet%20CPD-59146R1.pdf",
+    "sku": "C11CJ07201",
+    "price": "$199.99",
+    "image_url": "https://mediaserver.goepson.com/ImConvServlet/imconv/7328dde5c257bfe3a78c95738d8ae195faf9ae4e/515Wx515H?use=productpictures&hybrisId=B2C&assetDescr=wf3820_prod01_headon_690x460",
+    "reviews": "(235)"
+  },
+  {
+    "brand": "EPSON",
+    "link": "https://epson.com/For-Home/Printers/Inkjet/Expression-Premium-XP-7100-Small-in-One-Printer/p/C11CH03201",
+    "name": "Expression Premium XP-7100 Small-in-One Printer",
+    "tech_specs": "Superior photo quality with 5-color inks | 30-page ADF; auto 2-sided print/copy/scan | Specialty paper1, DVDs; borderless up to 8\"x10\" | 4.3\" touchscreen; built-in USB/card slots2 | Easy mobile printing from your tablet/smartphone3",
+    "scraped_at": "2025-08-20T09:55:10.959264",
+    "datasheet_link": "https://epson.com/For-Home/Printers/Inkjet/Expression-Premium-XP-7100-Small-in-One-Printer/p/C11CH03201#specifications",
+    "sku": "C11CH03201",
+    "price": "$249.99",
+    "image_url": "https://mediaserver.goepson.com/ImConvServlet/imconv/051e491d021ae27fa4d8fe19a25d976bf3d2cc46/515Wx515H?use=productpictures&hybrisId=B2C&assetDescr=xp7100_hero-paper_690x460",
+    "reviews": "(1693)"
   }
 ]
