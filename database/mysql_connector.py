@@ -198,6 +198,19 @@ class MySQLConnector:
                 else:
                     logger.debug(f"ℹ️ Ignoré: {e}")
 
+        # Option: supprimer la colonne description si demandée
+        drop_desc = os.getenv("DB_DROP_DESCRIPTION", "false").strip().lower() in {"1", "true", "yes", "on"}
+        if drop_desc:
+            try:
+                cursor.execute(f"ALTER TABLE {table_name} DROP COLUMN description")
+                logger.info(f"🔧 {table_name}: colonne description supprimée")
+            except Error as e:
+                # Ignore si colonne absente
+                if 'check that column/key exists' in str(e).lower() or 'unknown column' in str(e).lower():
+                    pass
+                else:
+                    logger.debug(f"ℹ️ Suppression description ignorée: {e}")
+
         # Indices uniques: remplacer (brand, name) par (brand, sku) et (brand, link_hash)
         try:
             cursor.execute(f"ALTER TABLE {table_name} DROP INDEX unique_product")
@@ -234,24 +247,54 @@ class MySQLConnector:
         
         try:
             cursor = self.connection.cursor()
+
+            # Détecter la présence de la colonne description
+            has_description = False
+            try:
+                cursor.execute(
+                    """
+                    SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
+                    WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s AND COLUMN_NAME = 'description'
+                    """,
+                    (self.config.get('database'), table_name)
+                )
+                has_description = cursor.fetchone() is not None
+            except Error:
+                has_description = False
             
             # Requête d'insertion avec gestion des doublons (clé: brand+sku ou brand+link_hash)
-            query = f"""
-                INSERT INTO {table_name}
-                (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active, description)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                ON DUPLICATE KEY UPDATE
-                    tech_specs = VALUES(tech_specs),
-                    scraped_at = VALUES(scraped_at),
-                    datasheet_link = VALUES(datasheet_link),
-                    image_url = VALUES(image_url),
-                    ai_processed = VALUES(ai_processed),
-                    ai_processed_at = VALUES(ai_processed_at),
-                    -- description remains unchanged (we don't manage it)
-                    is_active = 1,
-                    last_seen = CURRENT_TIMESTAMP,
-                    updated_at = CURRENT_TIMESTAMP
-            """
+            if has_description:
+                query = f"""
+                    INSERT INTO {table_name}
+                    (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active, description)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE
+                        tech_specs = VALUES(tech_specs),
+                        scraped_at = VALUES(scraped_at),
+                        datasheet_link = VALUES(datasheet_link),
+                        image_url = VALUES(image_url),
+                        ai_processed = VALUES(ai_processed),
+                        ai_processed_at = VALUES(ai_processed_at),
+                        is_active = 1,
+                        last_seen = CURRENT_TIMESTAMP,
+                        updated_at = CURRENT_TIMESTAMP
+                """
+            else:
+                query = f"""
+                    INSERT INTO {table_name}
+                    (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE
+                        tech_specs = VALUES(tech_specs),
+                        scraped_at = VALUES(scraped_at),
+                        datasheet_link = VALUES(datasheet_link),
+                        image_url = VALUES(image_url),
+                        ai_processed = VALUES(ai_processed),
+                        ai_processed_at = VALUES(ai_processed_at),
+                        is_active = 1,
+                        last_seen = CURRENT_TIMESTAMP,
+                        updated_at = CURRENT_TIMESTAMP
+                """
             
             inserted_count = 0
             updated_count = 0
@@ -270,21 +313,37 @@ class MySQLConnector:
                 ai_processed = 1 if product.get('ai_processed') else 0
                 ai_processed_at = product.get('ai_processed_at')
                 
-                values = (
-                    product.get('brand', ''),
-                    link_val,
-                    product.get('name', ''),
-                    product.get('sku'),
-                    link_hash,
-                    tech_specs_json,
-                    product.get('scraped_at', datetime.now().isoformat()),
-                    product.get('datasheet_link'),
-                    product.get('image_url', ''),
-                    ai_processed,
-                    ai_processed_at,
-                    1,
-                    description_val
-                )
+                if has_description:
+                    values = (
+                        product.get('brand', ''),
+                        link_val,
+                        product.get('name', ''),
+                        product.get('sku'),
+                        link_hash,
+                        tech_specs_json,
+                        product.get('scraped_at', datetime.now().isoformat()),
+                        product.get('datasheet_link'),
+                        product.get('image_url', ''),
+                        ai_processed,
+                        ai_processed_at,
+                        1,
+                        description_val
+                    )
+                else:
+                    values = (
+                        product.get('brand', ''),
+                        link_val,
+                        product.get('name', ''),
+                        product.get('sku'),
+                        link_hash,
+                        tech_specs_json,
+                        product.get('scraped_at', datetime.now().isoformat()),
+                        product.get('datasheet_link'),
+                        product.get('image_url', ''),
+                        ai_processed,
+                        ai_processed_at,
+                        1,
+                    )
                 
                 # Vérifier si le produit existe déjà (préfère SKU, sinon link_hash)
                 check_query = f"SELECT id FROM {table_name} WHERE brand = %s AND ((sku IS NOT NULL AND sku = %s) OR (sku IS NULL AND link_hash = %s)) LIMIT 1"
