@@ -105,6 +105,7 @@ class MySQLConnector:
                     sku VARCHAR(100) NULL,
                     link_hash CHAR(64) NULL,
                     tech_specs JSON,
+                    description TEXT,
                     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     datasheet_link TEXT,
                     image_url TEXT,
@@ -125,6 +126,7 @@ class MySQLConnector:
                     sku VARCHAR(100) NULL,
                     link_hash CHAR(64) NULL,
                     tech_specs JSON,
+                    description TEXT,
                     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     datasheet_link TEXT,
                     image_url TEXT,
@@ -145,6 +147,7 @@ class MySQLConnector:
                     sku VARCHAR(100) NULL,
                     link_hash CHAR(64) NULL,
                     tech_specs JSON,
+                    description TEXT,
                     scraped_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     datasheet_link TEXT,
                     image_url TEXT,
@@ -178,6 +181,7 @@ class MySQLConnector:
         alter_statements = [
             f"ALTER TABLE {table_name} ADD COLUMN sku VARCHAR(100) NULL",
             f"ALTER TABLE {table_name} ADD COLUMN link_hash CHAR(64) NULL",
+            f"ALTER TABLE {table_name} ADD COLUMN description TEXT NULL",
             f"ALTER TABLE {table_name} ADD COLUMN ai_processed TINYINT(1) DEFAULT 0",
             f"ALTER TABLE {table_name} ADD COLUMN ai_processed_at TIMESTAMP NULL",
             f"ALTER TABLE {table_name} ADD COLUMN is_active TINYINT(1) NOT NULL DEFAULT 1",
@@ -234,8 +238,8 @@ class MySQLConnector:
             # Requête d'insertion avec gestion des doublons (clé: brand+sku ou brand+link_hash)
             query = f"""
                 INSERT INTO {table_name}
-                (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active, description)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     tech_specs = VALUES(tech_specs),
                     scraped_at = VALUES(scraped_at),
@@ -243,6 +247,7 @@ class MySQLConnector:
                     image_url = VALUES(image_url),
                     ai_processed = VALUES(ai_processed),
                     ai_processed_at = VALUES(ai_processed_at),
+                    -- description remains unchanged (we don't manage it)
                     is_active = 1,
                     last_seen = CURRENT_TIMESTAMP,
                     updated_at = CURRENT_TIMESTAMP
@@ -252,8 +257,14 @@ class MySQLConnector:
             updated_count = 0
             
             for product in products_data:
-                # Conversion des tech_specs en JSON string
-                tech_specs_json = json.dumps(product.get('tech_specs', {}), ensure_ascii=False)
+                # Filet de sécurité: si tech_specs est une string, la déplacer en description et mettre {}
+                # No description: we drop any description and never persist marketing text
+                description_val = None
+                ts = product.get('tech_specs', {})
+                if isinstance(ts, str):
+                    # Coerce to empty JSON object if AI produced a string
+                    ts = {}
+                tech_specs_json = json.dumps(ts, ensure_ascii=False)
                 link_val = product.get('link', '') or ''
                 link_hash = hashlib.sha256(link_val.encode('utf-8')).hexdigest() if link_val else None
                 ai_processed = 1 if product.get('ai_processed') else 0
@@ -271,7 +282,8 @@ class MySQLConnector:
                     product.get('image_url', ''),
                     ai_processed,
                     ai_processed_at,
-                    1
+                    1,
+                    description_val
                 )
                 
                 # Vérifier si le produit existe déjà (préfère SKU, sinon link_hash)

@@ -5,7 +5,9 @@ import os
 from typing import Dict, List, Any
 import time
 import argparse
+import re
 from dotenv import load_dotenv
+from .policies import FIELD_POLICY
 
 # Charger les variables d'environnement depuis un fichier .env (facilite l'usage local)
 load_dotenv()
@@ -13,6 +15,66 @@ load_dotenv()
 # Configuration de logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    return os.getenv(name, str(default)).strip().lower() in {"1", "true", "yes", "on"}
+
+
+AI_POLICY_STRICT = _env_bool("AI_POLICY_STRICT", True)
+AI_KEYS_MAX = int(os.getenv("AI_KEYS_MAX", "30"))
+AI_DROP_DESCRIPTION = _env_bool("AI_DROP_DESCRIPTION", True)
+
+
+def infer_category(file_or_name: str, default_cat: str | None = None) -> str:
+    name = os.path.basename(file_or_name).lower()
+    if "serveur" in name or "servers" in name:
+        return "serveurs"
+    if "stock" in name or "storage" in name:
+        return "stockage"
+    return default_cat or "imprimantes_scanners"
+
+
+def _canonical_key(k: str, category: str) -> str:
+    k1 = re.sub(r"\s+", "_", k.strip().lower())
+    syn = FIELD_POLICY.get(category, {}).get("synonyms", {})
+    return syn.get(k1, k1)
+
+
+def _filter_and_normalize(obj: Dict[str, Any], category: str) -> Dict[str, Any]:
+    policy = FIELD_POLICY.get(category, {})
+    allowed = set(policy.get("allowed", []))
+    out: Dict[str, Any] = {}
+    for k, v in obj.items():
+        ck = _canonical_key(k, category)
+        if allowed and ck not in allowed:
+            continue
+        val = v
+        if isinstance(val, str):
+            s = val.strip().replace(",", ".")
+            # Normalize some simple units
+            if ck.endswith("_gb"):
+                m = re.search(r"([\d\.]+)\s*([tg]b?)", s, re.I)
+                if m:
+                    num = float(m.group(1))
+                    unit = m.group(2).lower()
+                    if unit.startswith("tb"):
+                        num *= 1024
+                    val = round(num, 2)
+                else:
+                    val = s
+            elif ck.endswith("_mhz"):
+                m = re.search(r"([\d\.]+)\s*mhz", s, re.I)
+                val = int(float(m.group(1))) if m else s
+            elif ck.endswith("_w"):
+                m = re.search(r"([\d\.]+)\s*w", s, re.I)
+                val = int(float(m.group(1))) if m else s
+            else:
+                val = s
+        out[ck] = val
+        if len(out) >= AI_KEYS_MAX:
+            break
+    return out
 
 class GeminiProcessor:
     def __init__(self, api_key=None, model_name='gemini-1.5-flash'):
@@ -27,7 +89,7 @@ class GeminiProcessor:
         genai.configure(api_key=self.api_key)
         self.model = genai.GenerativeModel(model_name)
         
-    def clean_tech_specs(self, raw_specs: Dict[str, Any], product_name: str = "") -> Dict[str, Any]:
+    def clean_tech_specs(self, raw_specs: Dict[str, Any], product_name: str = "", category_hint: str | None = None) -> Dict[str, Any]:
         """
         Nettoie et structure les spécifications techniques avec Gemini de manière robuste.
         """
@@ -35,11 +97,10 @@ class GeminiProcessor:
             logger.warning(f"Spécifications brutes vides pour {product_name}. Retourne un dict vide.")
             return {}
 
-        # Accepter aussi string ou JSON string (ex: Epson " | "-joined)
+        # Accepter aussi string ou JSON string
         if isinstance(raw_specs, str):
-            # Essayer de charger comme JSON si possible
             specs_str = raw_specs.strip()
-            if specs_str.startswith('{') and specs_str.endswith('}'):
+            if specs_str.startswith("{") and specs_str.endswith("}"):
                 try:
                     raw_specs = json.loads(specs_str)
                 except Exception:
@@ -50,19 +111,21 @@ class GeminiProcessor:
             logger.warning(f"Format specs inattendu pour {product_name} ({type(raw_specs)}). Conversion textuelle.")
             raw_specs = {"Specs": str(raw_specs)}
 
-        # Convertir les spécifications brutes en une chaîne JSON simple
         specs_json_string = json.dumps(raw_specs, ensure_ascii=False)
+        category = category_hint or infer_category(product_name or "")
 
-        # Prompt optimisé "few-shot" pour de meilleurs résultats et moins de tokens
+        allowed = ", ".join(FIELD_POLICY.get(category, {}).get("allowed", []))
         prompt = f"""
         Tâche : Analyse et structure les spécifications techniques suivantes pour le produit '{product_name}'.
 
         Règles :
-        1. Extrais les informations clés (Processeur, Mémoire, Stockage, Réseau, etc.).
-        2. Regroupe les informations de manière logique.
-        3. Ignore les phrases marketing non pertinentes.
-        4. Si une information est manquante, ne l'invente pas.
-        5. Réponds UNIQUEMENT avec un objet JSON valide. Ne rajoute pas de texte avant ou après.
+        1. Extrais UNIQUEMENT les informations techniques essentielles. Supprime le marketing.
+        2. Utilise des clés simples et normalisées; n’invente rien.
+        3. Réponds STRICTEMENT par un objet JSON valide, sans texte additionnel.
+        4. Si une information est absente, ne la crée pas.
+        5. Tu ne dois pas dépasser {AI_KEYS_MAX} clés.
+
+        Liste de clés autorisées pour cette catégorie ({category}): {allowed}
 
         Exemple :
         Input: {{"General": "Powered by Intel Xeon E-2300 series processors, four DDR4 DIMM slots, two M.2 slots, up to four 3.5-inch HDDs, and one 2.5-inch SSD."}}
@@ -89,27 +152,25 @@ class GeminiProcessor:
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                # Configuration de la génération pour une réponse JSON fiable
                 generation_config = genai.types.GenerationConfig(
                     response_mime_type="application/json",
-                    temperature=0.1 # Faible température pour des résultats plus déterministes
+                    temperature=0.1,
                 )
                 response = self.model.generate_content(prompt, generation_config=generation_config)
-                
-                # La réponse est déjà un objet JSON grâce à response_mime_type
                 logger.info(f"✅ Spécifications nettoyées pour {product_name}")
-                return json.loads(response.text)
-
+                data = json.loads(response.text)
+                if AI_POLICY_STRICT and isinstance(data, dict):
+                    data = _filter_and_normalize(data, category)
+                return data
             except Exception as e:
                 logger.warning(f"Tentative {attempt + 1}/{max_retries} a échoué pour {product_name}: {e}")
                 if attempt + 1 == max_retries:
                     logger.error(f"Échec final du traitement Gemini pour {product_name} après {max_retries} tentatives.")
                     return {"error": "Gemini processing failed", "details": str(e)}
-                time.sleep(2 ** attempt)  # Attente exponentielle (1s, 2s, 4s...)
-        
+                time.sleep(2 ** attempt)
         return {"error": "Gemini processing failed after all retries"}
     
-    def process_product_batch(self, products: List[Dict[str, Any]], batch_size: int = 5) -> List[Dict[str, Any]]:
+    def process_product_batch(self, products: List[Dict[str, Any]], batch_size: int = 5, category_hint: str | None = None) -> List[Dict[str, Any]]:
         """
         Traite un lot de produits avec rate limiting
         """
@@ -127,12 +188,15 @@ class GeminiProcessor:
                     product_name = product.get('name', '')
                     
                     if raw_specs:
-                        cleaned_specs = self.clean_tech_specs(raw_specs, product_name)
+                        cleaned_specs = self.clean_tech_specs(raw_specs, product_name, category_hint=category_hint)
                         product['tech_specs'] = cleaned_specs
                         product['ai_processed'] = True
                         product['ai_processed_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
                     else:
                         product['ai_processed'] = False
+                    # Option: supprimer toute description marketing si présente
+                    if AI_DROP_DESCRIPTION and 'description' in product:
+                        product.pop('description', None)
                     
                     processed_products.append(product)
                     
@@ -185,30 +249,34 @@ def process_json_file(input_file: str, output_file: str, api_key: str = None):
         # Charger les données
         with open(input_file, 'r', encoding='utf-8') as f:
             products = json.load(f)
-        
+
         logger.info(f"📊 Traitement de {len(products)} produits avec Gemini...")
-        
+
         # Initialiser le processeur
         processor = GeminiProcessor(api_key)
-        
+        category_hint = infer_category(input_file)
+
         # Traiter les produits
-        processed_products = processor.process_product_batch(products)
-        
+        processed_products = processor.process_product_batch(products, category_hint=category_hint)
+
         # Optimiser la taille
         for product in processed_products:
             if product.get('tech_specs'):
                 product['tech_specs'] = processor.optimize_specs_size(product['tech_specs'])
-        
+            # Double-sécurité: retirer description si demandé
+            if AI_DROP_DESCRIPTION and 'description' in product:
+                product.pop('description', None)
+
         # Sauvegarder
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(processed_products, f, ensure_ascii=False, indent=2)
-        
+
         logger.info(f"✅ Traitement terminé → {output_file}")
-        
+
         # Statistiques
         processed_count = sum(1 for p in processed_products if p.get('ai_processed'))
         logger.info(f"📈 {processed_count}/{len(processed_products)} produits traités par IA")
-        
+
     except Exception as e:
         logger.error(f"❌ Erreur traitement fichier: {e}")
 
