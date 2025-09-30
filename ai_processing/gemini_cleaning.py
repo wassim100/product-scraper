@@ -7,7 +7,12 @@ import time
 import argparse
 import re
 from dotenv import load_dotenv
-from .policies import FIELD_POLICY
+try:
+    # When executed as a package module
+    from .policies import FIELD_POLICY
+except Exception:
+    # When executed as a standalone script from project root
+    from ai_processing.policies import FIELD_POLICY
 
 # Charger les variables d'environnement depuis un fichier .env (facilite l'usage local)
 load_dotenv()
@@ -183,8 +188,16 @@ class GeminiProcessor:
             
             for product in batch:
                 try:
-                    # Nettoyer les spécifications
-                    raw_specs = product.get('tech_specs', {})
+                    # Nettoyer les spécifications (fallback si tech_specs est vide)
+                    raw_specs = (
+                        product.get('tech_specs')
+                        or product.get('specs')
+                        or product.get('specifications')
+                        or product.get('features')
+                        or product.get('details')
+                        or product.get('description')
+                        or {}
+                    )
                     product_name = product.get('name', '')
                     
                     if raw_specs:
