@@ -1,64 +1,129 @@
-<<<<<<< HEAD
-# Selenium Scraper Suite
-
-Production-ready scraping suite for servers, storage, and printers/scanners. It orchestrates Selenium scrapers, optional Gemini-based cleaning, and MySQL storage via a central scheduler.
-
-## Highlights
-=======
 # Product Scraper – Serveurs, Stockage, Imprimantes & Scanners
 
-Système de scraping automatisé avec post‑traitement IA (Gemini) et insertion MySQL, orchestré par un scheduler unique.
+Système de scraping automatisé (multi‑marques) avec post‑traitement IA (Gemini) et insertion MySQL. Conçu pour être rapide, modulable, et sûr (idempotent). 
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
-[![Selenium](https://img.shields.io/badge/Selenium-WebDriver-green.svg)](https://selenium.dev)
-[![AI](https://img.shields.io/badge/AI-Gemini-orange.svg)](https://ai.google.dev)
-[![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
->>>>>>> 2b8329a (feat(epson): add EpsonPrinters and EpsonScanner scrapers; orchestrator DB flow; brand-scoped deactivation flag; README overhaul)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org) [![Selenium](https://img.shields.io/badge/Selenium-WebDriver-green.svg)](https://selenium.dev) [![AI](https://img.shields.io/badge/AI-Gemini-orange.svg)](https://ai.google.dev) [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
-- Central scheduler (filter by categories or scripts)
-- Gemini cleaning (optional) with batching and retries
-- MySQL upserts with brand-scoped deactivate-missing
-- Safe testing flags: headless, max products, deactivate toggle
-- Per-script logs and JSON artifacts
+## 🚀 Principales fonctionnalités
+- Orchestrateur central (filtrage par catégories/scripts) + variables d'environnement
+- Extraction hybride: tuiles produits (DOM structuré) + JSON‑LD + fallback PDP (enrichissement conditionnel)
+- Normalisation IA (Gemini) avec batching, retries, contraintes de format JSON strict
+- Upsert MySQL idempotent (clés uniques `(brand, sku)` & `(brand, link_hash)`), désactivation sélective (`ENABLE_DEACTIVATE_MISSING`)
+- Flags de performance: `FAST_SCRAPE`, `HEADLESS_MODE`, `MAX_PRODUCTS`, `SKIP_PDP_ENRICH`
+- Journalisation par script et artefacts JSON bruts / nettoyés
+- CLI base de données (`database/db_cli.py`) pour test, listing, export, statistiques
 
-<<<<<<< HEAD
-## Setup
+## 🧩 Périmètre actuel
+| Domaine        | Marques / Scripts |
+|----------------|-------------------|
+| Serveurs       | ASUS, Dell, HP (tile extractor + PDP fallback), Lenovo, XFusion |
+| Stockage       | Dell, Lenovo |
+| Imprimantes & Scanners | Epson (Printers + Scanner), HP |
 
-1) Python 3.11+ (3.12 recommended)
-2) pip install -r requirements.txt
-3) Create .env with DB creds and GEMINI_API_KEY
+## 🏗️ Architecture (vue rapide)
+```
+ai_processing/        → Nettoyage & politiques Gemini
+automation/           → Scheduler / orchestration
+database/             → Connexion, schéma, CLI, migrations légères
+serveurs/, stockage/, imprimantes_scanners/  → Scrapers spécialisés
+logs/                 → Journaux d'exécution
+```
 
-## Run via scheduler
+## ⚙️ Installation
+```powershell
+git clone https://github.com/wassim100/product-scraper.git
+cd product-scraper
+python -m venv venv
+venv\Scripts\Activate
+pip install -r requirements.txt
+```
 
-- All: python -m automation.scheduler
-- Only printers/scanners: set SCHEDULER_CATEGORIES=imprimantes_scanners
-- Only Epson scripts: set SCHEDULER_SCRIPTS=EpsonPrinters.py,EpsonScanner.py
+Créer un fichier `.env` (optionnel si valeurs par défaut) :
+```env
+GEMINI_API_KEY=VOTRE_CLE
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PASSWORD=
+MYSQL_DATABASE=scraping_db
+```
 
-Env flags:
-- HEADLESS_MODE=true|false (default true)
-- ENABLE_DB=true|false (default true)
-- ENABLE_AI_CLEANING=true|false (default true)
-- ENABLE_DEACTIVATE_MISSING=true|false (default true)
-- MAX_PRODUCTS=0 (0 = no limit)
-- SCHEDULER_CATEGORIES=serveurs,stockage,imprimantes_scanners
-- SCHEDULER_SCRIPTS=comma-separated names
-- MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE
-- GEMINI_API_KEY
+## 🔑 Variables d'environnement principales
+| Variable | Rôle |
+|----------|------|
+| HEADLESS_MODE | Exécution Chrome sans interface |
+| FAST_SCRAPE | Active optimisations (timeouts courts, images désactivées) |
+| MAX_PRODUCTS | Limite par run (0 = illimité) |
+| ENABLE_DB | Active insertion DB |
+| ENABLE_AI_CLEANING | Active nettoyage Gemini post-scrape (scheduler) |
+| ENABLE_DEACTIVATE_MISSING | Désactive en base les produits non revus dans le run |
+| SKIP_PDP_ENRICH | Saute l'enrichissement PDP (HP) pour accélérer |
+| SCHEDULER_CATEGORIES | Filtre (serveurs,stockage,imprimantes_scanners) |
+| SCHEDULER_SCRIPTS | Liste précise de scripts à exécuter |
+| GEMINI_API_KEY | Clé API Gemini |
 
-## Epson scripts
+## 🧪 Exécution rapide (exemples)
+Scraper 5 serveurs HP en mode rapide :
+```powershell
+$env:MAX_PRODUCTS=5; $env:FAST_SCRAPE="1"; $env:HEADLESS_MODE="1"; python .\serveurs\hp.py
+```
 
-- imprimantes_scanners/EpsonPrinters.py → epson_printers_scanners_full.json
-- imprimantes_scanners/EpsonScanner.py → epson_scanners_full.json
+Nettoyage IA manuel :
+```powershell
+python .\ai_processing\gemini_cleaning.py --in .\hp_servers_full.json --out .\hp_servers_full.cleaned.json --batch-size 2
+```
 
-When RUNNING_UNDER_SCHEDULER=true, scrapers skip direct DB writes; the scheduler handles AI + DB.
+Insertion DB (upsert) :
+```powershell
+$env:ENABLE_DEACTIVATE_MISSING="false"; python -c "from database.mysql_connector import save_to_database; print(save_to_database('hp_servers_full.cleaned.json','serveurs','HP'))"
+```
 
-## Notes
+Scheduler (catégorie imprimantes & scanners uniquement) :
+```powershell
+$env:SCHEDULER_CATEGORIES="imprimantes_scanners"; python -m automation.scheduler
+```
 
-- Logs: logs/ per run
-- Selenium: Chrome; keep chromedriver.exe or rely on Selenium Manager
-- MySQL: Unique (brand, sku) and (brand, link_hash); lifecycle fields present
-- AI cleaning: see ai_processing/gemini_cleaning.py
-=======
+## 🛢️ Schéma & DB
+- Clés uniques : `(brand, sku)` et `(brand, link_hash)`
+- Champs lifecycle: `is_active`, `scraped_at`, `last_seen`, `ai_processed` / `ai_processed_at`
+- Désactivation conditionnelle contrôlée par `ENABLE_DEACTIVATE_MISSING`
+
+## 🤖 IA (Gemini)
+Flux : JSON brut → nettoyage (fusion specs / suppression bruit / normalisation clés) → `.cleaned.json` → DB.
+Gestion : lots (`--batch-size`), limite (`--limit`), robustesse (retry basique).
+
+## 🧹 Qualité / Robustesse
+- Extraction HP refactorisée (tuiles → hints consolidés → JSON-LD → fallback PDP ciblé)
+- `try/finally` systématique pour fermeture navigateur
+- Image-blocking en mode `FAST_SCRAPE`
+- Normalisation specs (regex CPU / cores / RAM / stockage / PSU)
+
+## 🔍 CLI Base de Données
+Exemples :
+```powershell
+python -m database.db_cli test
+python -m database.db_cli list --table serveurs --brand HP --limit 5
+python -m database.db_cli brands --table serveurs
+python -m database.db_cli export --table serveurs --brand HP --out hp_export.json
+```
+
+## 📁 Fichiers ignorés (sécurité & propreté)
+Le `.gitignore` exclut : logs, drivers, artefacts volumineux (`*_full.json`, fichiers `.cleaned.json`), environnements virtuels, secrets `.env`.
+
+## 📝 Licence
+MIT – voir `LICENSE`.
+
+## ✅ Résumé des atouts
+> Pipeline complet scrape → enrichissement conditionnel → nettoyage IA → upsert MySQL, modulaire, performant et traçable.
+
+## ⭐ Contribution
+PRs bienvenues : créez une branche, développez, testez, ouvrez une Pull Request.
+
+---
+Si ce projet vous est utile, une étoile GitHub est appréciée.
+
+---
+
+_Documentation finale consolidée – version stable._
 ### 🎯 Extraction multi‑marques
 - Serveurs: ASUS, Dell, HP, Lenovo, XFusion
 - Stockage: Dell, Lenovo
