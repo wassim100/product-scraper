@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Smoke scrape (HP serveurs MAX_PRODUCTS=1, no DB, no AI)
+        env:
+          MAX_PRODUCTS: "1"
+          FAST_SCRAPE: "1"
+          HEADLESS_MODE: "1"
+          ENABLE_DB: "0"
+          ENABLE_AI_CLEANING: "0"
+        run: |
+          python serveurs/hp.py || (echo "Smoke scrape failed" && exit 1)
+          test -f hp_servers_full.json || (echo "Output file missing" && exit 1)
+
+      - name: Validate JSON structure
+        run: |
+          python - <<'PY'
+import json,sys
+with open('hp_servers_full.json','r',encoding='utf-8') as f:
+    data=json.load(f)
+assert isinstance(data,list) and len(data)>=1, 'List with at least one item expected'
+first=data[0]
+for key in ['brand','name','link']:
+    assert key in first, f'Missing key {key}'
+print('Basic validation OK')
+PY
+
+      - name: Upload artifact (smoke output)
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-output
+          path: hp_servers_full.json

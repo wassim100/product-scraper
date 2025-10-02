@@ -1,0 +1,19 @@
+[
+  {
+    "brand": "HP",
+    "category": "serveurs",
+    "name": "HPE ProLiant DL360 Gen11",
+    "sku": "P12345-421",
+    "link": "https://www.hpe.com/psnow/dl360-gen11",
+    "tech_specs": {
+      "Form Factor": "1U rack",
+      "CPU": "2 x Intel Xeon Scalable 4th Gen",
+      "Cores": "Up to 64 cores per CPU",
+      "Memory": "32 DIMM slots, DDR5",
+      "Storage Bays": "10 SFF or 4 LFF",
+      "Power": "Dual redundant PSU"
+    },
+    "scraped_at": "2025-09-30T12:00:00Z",
+    "ai_processed_at": "2025-09-30T12:05:00Z"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "brand": "Epson",
+    "category": "imprimantes_scanners",
+    "name": "Epson EcoTank Pro X5000",
+    "sku": "ETX5000",
+    "link": "https://www.epson.eu/ecotank-pro-x5000",
+    "tech_specs": {
+      "Technology": "Inkjet",
+      "Functions": "Print, Scan, Copy",
+      "Connectivity": "Wi-Fi, Ethernet, USB",
+      "Resolution": "4800 x 2400 dpi",
+      "ADF": "50 sheets"
+    },
+    "scraped_at": "2025-09-25T09:15:00Z",
+    "ai_processed_at": "2025-09-25T09:16:30Z"
+  }
+]
