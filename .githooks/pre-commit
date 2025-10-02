@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Pre-commit hook wrapper to guard against committing large generated JSON artifacts.
+# Enable with: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+PYTHON_BIN="python"
+
+if command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="python3"
+fi
+
+$PYTHON_BIN tools/precommit_guard.py
+
+exit $?
