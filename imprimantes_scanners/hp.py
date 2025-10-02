@@ -58,12 +58,15 @@ def setup_driver():
         if HEADLESS_MODE:
             options.add_argument("--headless=new")
 
-        # Fallback Selenium Manager si chromedriver.exe absent
-        if os.path.exists(CHROMEDRIVER_PATH):
-            service = Service(CHROMEDRIVER_PATH)
-            driver = webdriver.Chrome(service=service, options=options)
-        else:
+        # Utiliser Selenium Manager par défaut; fallback local si nécessaire
+        try:
             driver = webdriver.Chrome(options=options)
+        except Exception:
+            if os.path.exists(CHROMEDRIVER_PATH):
+                service = Service(CHROMEDRIVER_PATH)
+                driver = webdriver.Chrome(service=service, options=options)
+            else:
+                raise
 
         # Anti-détection
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")

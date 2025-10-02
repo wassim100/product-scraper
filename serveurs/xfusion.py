@@ -9,6 +9,8 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+import os
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -41,7 +43,12 @@ class XFusionServerScraperImproved:
         chrome_options.add_argument("--window-size=1920,1080")
         chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
         
-        self.driver = webdriver.Chrome(options=chrome_options)
+        # Utiliser Selenium Manager; fallback local si nécessaire
+        try:
+            self.driver = webdriver.Chrome(options=chrome_options)
+        except Exception:
+            local_driver = os.path.join(os.getcwd(), "chromedriver.exe")
+            self.driver = webdriver.Chrome(service=Service(local_driver), options=chrome_options)
         self.wait = WebDriverWait(self.driver, 15)
         
     def extract_table_servers_improved(self, url, category_name):

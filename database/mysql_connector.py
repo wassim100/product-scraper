@@ -269,6 +269,8 @@ class MySQLConnector:
                     (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active, description)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     ON DUPLICATE KEY UPDATE
+                        sku = VALUES(sku),
+                        link_hash = VALUES(link_hash),
                         tech_specs = VALUES(tech_specs),
                         scraped_at = VALUES(scraped_at),
                         datasheet_link = VALUES(datasheet_link),
@@ -285,6 +287,8 @@ class MySQLConnector:
                     (brand, link, name, sku, link_hash, tech_specs, scraped_at, datasheet_link, image_url, ai_processed, ai_processed_at, is_active)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     ON DUPLICATE KEY UPDATE
+                        sku = VALUES(sku),
+                        link_hash = VALUES(link_hash),
                         tech_specs = VALUES(tech_specs),
                         scraped_at = VALUES(scraped_at),
                         datasheet_link = VALUES(datasheet_link),
@@ -312,6 +316,27 @@ class MySQLConnector:
                 link_hash = hashlib.sha256(link_val.encode('utf-8')).hexdigest() if link_val else None
                 ai_processed = 1 if product.get('ai_processed') else 0
                 ai_processed_at = product.get('ai_processed_at')
+
+                # Normaliser les champs potentiellement non-scalaires vers des chaînes
+                def _to_str(val):
+                    if isinstance(val, list):
+                        # prendre le premier élément chaîne non vide
+                        for x in val:
+                            if isinstance(x, str) and x.strip():
+                                return x.strip()
+                        return ''
+                    if isinstance(val, (int, float)):
+                        return str(val)
+                    if isinstance(val, str):
+                        return val
+                    # objets/dicts non supportés pour TEXT → json.dumps compact
+                    try:
+                        return json.dumps(val, ensure_ascii=False)
+                    except Exception:
+                        return ''
+
+                datasheet_val = _to_str(product.get('datasheet_link'))
+                image_val = _to_str(product.get('image_url', ''))
                 
                 if has_description:
                     values = (
@@ -322,8 +347,8 @@ class MySQLConnector:
                         link_hash,
                         tech_specs_json,
                         product.get('scraped_at', datetime.now().isoformat()),
-                        product.get('datasheet_link'),
-                        product.get('image_url', ''),
+                        datasheet_val,
+                        image_val,
                         ai_processed,
                         ai_processed_at,
                         1,
@@ -338,8 +363,8 @@ class MySQLConnector:
                         link_hash,
                         tech_specs_json,
                         product.get('scraped_at', datetime.now().isoformat()),
-                        product.get('datasheet_link'),
-                        product.get('image_url', ''),
+                        datasheet_val,
+                        image_val,
                         ai_processed,
                         ai_processed_at,
                         1,

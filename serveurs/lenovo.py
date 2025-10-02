@@ -10,6 +10,14 @@ from selenium.webdriver.chrome.options import Options
 import os
 import sys
 
+# Env toggles for stability/speed
+HEADLESS_MODE = os.getenv("HEADLESS_MODE", "false").strip().lower() in {"1","true","yes","on"}
+FAST_SCRAPE = os.getenv("FAST_SCRAPE", "false").strip().lower() in {"1","true","yes","on"}
+try:
+    MAX_PRODUCTS_LIMIT = int(os.getenv("MAX_PRODUCTS", "0") or 0)
+except Exception:
+    MAX_PRODUCTS_LIMIT = 0
+
 # Configuration
 OUTPUT_JSON = "lenovo_servers_full.json"
 CATEGORIES = {
@@ -24,6 +32,7 @@ CATEGORIES = {
 def setup_driver():
     """Configure et retourne le driver Chrome"""
     chrome_options = Options()
+    chrome_options.page_load_strategy = 'eager'
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
@@ -32,9 +41,19 @@ def setup_driver():
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+    if FAST_SCRAPE:
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        chrome_options.add_experimental_option("prefs", prefs)
+    if HEADLESS_MODE:
+        chrome_options.add_argument("--headless=new")
     
     driver = webdriver.Chrome(options=chrome_options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    try:
+        driver.set_page_load_timeout(15 if FAST_SCRAPE else 30)
+    except Exception:
+        pass
+    driver.implicitly_wait(6 if FAST_SCRAPE else 12)
     return driver
 
 def handle_cookie_banner(driver):
@@ -129,6 +148,33 @@ def extract_product_specs(product_element):
         except Exception as e:
             print(f"⚠️ Erreur lors de l'extraction des spécifications : {e}")
     
+    # Inject nearby bullets/paragraphs into raw_text if specs are sparse
+    try:
+        if not specs or len(specs) < 2:
+            lines = []
+            # Typical Lenovo listing bullets
+            for li in product_element.find_elements(By.CSS_SELECTOR, "li")[:8]:
+                t = (li.text or "").strip()
+                if t and 3 < len(t) < 200:
+                    lines.append(t)
+            if not lines:
+                # fallback to short paragraphs in card
+                for p in product_element.find_elements(By.CSS_SELECTOR, "p")[:4]:
+                    t = (p.text or "").strip()
+                    if t and len(t) > 10:
+                        lines.append(t)
+            if lines:
+                uniq = []
+                seen_line = set()
+                for t in lines:
+                    if t not in seen_line:
+                        uniq.append(t)
+                        seen_line.add(t)
+                if uniq:
+                    specs["raw_text"] = "; ".join(uniq)[:800]
+    except Exception:
+        pass
+
     return specs
 
 def extract_detailed_specs_from_product_page(driver, product_link):
@@ -297,7 +343,7 @@ def extract_products_from_page(driver, category_name):
     
     try:
         # Attendre que la page se charge complètement
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 15 if FAST_SCRAPE else 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "li.product_item, .product_item"))
         )
         
@@ -308,27 +354,31 @@ def extract_products_from_page(driver, category_name):
         # Scroll progressif pour déclencher le lazy loading
         print("🔄 Scroll progressif pour déclencher le lazy loading...")
         
-        scroll_increment = 200
+        scroll_increment = 300 if FAST_SCRAPE else 200
         current_position = 0
-        max_scrolls = 25
+        max_scrolls = 10 if FAST_SCRAPE else 25
         
         for i in range(max_scrolls):
             current_position += scroll_increment
             driver.execute_script(f"window.scrollTo(0, {current_position});")
-            time.sleep(3)  # Attendre 3 secondes à chaque scroll
+            time.sleep(1 if FAST_SCRAPE else 3)  # Attendre un peu à chaque scroll
             
             current_products = len(driver.find_elements(By.CSS_SELECTOR, "li.product_item"))
+            # Arrêt anticipé si plafond atteint
+            if MAX_PRODUCTS_LIMIT and current_products >= MAX_PRODUCTS_LIMIT:
+                print(f"⛔ Arrêt du scroll: plafond MAX_PRODUCTS={MAX_PRODUCTS_LIMIT} atteint")
+                break
             
             if i % 5 == 0:  # Afficher le progrès tous les 5 scrolls
                 print(f"📜 Scroll {i+1}/{max_scrolls} - Position: {current_position}px - Produits: {current_products}")
-        
+
         # Scroll final vers le bas
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(5)
-        
+        time.sleep(2 if FAST_SCRAPE else 5)
+
         products_after_scroll = len(driver.find_elements(By.CSS_SELECTOR, "li.product_item"))
         print(f"📊 Produits après scroll: {products_after_scroll}")
-        
+
         # Gérer la popup qui peut apparaître après le scroll
         print("🔍 Vérification des popups après scroll...")
         try:
@@ -486,6 +536,9 @@ def extract_products_from_page(driver, category_name):
         
         # Maintenant extraire tous les produits
         product_elements = driver.find_elements(By.CSS_SELECTOR, "li.product_item")
+        # Appliquer un plafond global si demandé
+        if MAX_PRODUCTS_LIMIT:
+            product_elements = product_elements[:MAX_PRODUCTS_LIMIT]
         
         if not product_elements:
             print("❌ Aucun produit trouvé sur cette page")
@@ -555,7 +608,7 @@ def extract_products_from_page(driver, category_name):
                 detailed_specs = {}
                 datasheet_link = ""
                 
-                if link:  # Seulement si on a un lien vers la page produit
+                if link and not FAST_SCRAPE:  # Détail seulement hors mode rapide
                     try:
                         detailed_specs, datasheet_link = extract_detailed_specs_from_product_page(driver, link)
                         
@@ -685,7 +738,7 @@ def scrape_lenovo_servers():
                 all_products.extend(products)
                 
                 # Pause entre les catégories
-                time.sleep(2)
+                time.sleep(1 if FAST_SCRAPE else 2)
                 
             except Exception as e:
                 print(f"❌ Erreur lors du scraping de {category_name}: {e}")

@@ -19,7 +19,6 @@ ENABLE_DB = os.getenv("ENABLE_DB", "false").lower() == "true"
 # ✅ CONFIGURATION LENOVO STOCKAGE
 BRAND = "Lenovo"
 OUTPUT_JSON = "lenovo_storage_full.json"
-CHROMEDRIVER_PATH = os.path.join(os.getcwd(), "chromedriver.exe")
 
 # 📦 URLs des catégories de stockage Lenovo - PRODUCTION COMPLÈTE
 STORAGE_URLS = [
@@ -32,12 +31,13 @@ STORAGE_URLS = [
 ]
 
 # ⚙️ Configuration pour production complète
-MAX_PRODUCTS_PER_CATEGORY = 15  # 🚀 PRODUCTION : Plus de produits (15 max par catégorie)
+MAX_PRODUCTS_PER_CATEGORY = int(os.getenv("MAX_PRODUCTS", "15") or 15)
 DELAY_BETWEEN_PRODUCTS = 1
 DELAY_BETWEEN_CATEGORIES = 1
 DELAY_FOR_PAGE_LOAD = 2
 
 # ✅ Setup Selenium avec options anti-détection
+HEADLESS_MODE = os.getenv("HEADLESS_MODE", "false").strip().lower() in {"1","true","yes","on"}
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
 options.add_argument("--disable-blink-features=AutomationControlled")
@@ -48,9 +48,17 @@ options.add_argument("--disable-logging")
 options.add_argument("--disable-gpu-sandbox")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
+if HEADLESS_MODE:
+    options.add_argument("--headless=new")
 
-service = Service(CHROMEDRIVER_PATH)
-driver = webdriver.Chrome(service=service, options=options)
+try:
+    driver = webdriver.Chrome(options=options)
+except Exception:
+    try:
+        local_driver = os.path.join(os.getcwd(), "chromedriver.exe")
+        driver = webdriver.Chrome(service=Service(local_driver), options=options)
+    except Exception as e:
+        raise e
 driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 wait = WebDriverWait(driver, 30)
 driver.implicitly_wait(10)

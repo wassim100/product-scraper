@@ -2,7 +2,7 @@ import google.generativeai as genai
 import json
 import logging
 import os
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 import time
 import argparse
 import re
@@ -12,12 +12,11 @@ try:
     from .policies import FIELD_POLICY
 except Exception:
     # When executed as a standalone script from project root
+    import sys as _sys, os as _os
+    _sys.path.append(_os.path.dirname(_os.path.dirname(__file__)))
     from ai_processing.policies import FIELD_POLICY
 
-# Charger les variables d'environnement depuis un fichier .env (facilite l'usage local)
 load_dotenv()
-
-# Configuration de logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -29,6 +28,11 @@ def _env_bool(name: str, default: bool = False) -> bool:
 AI_POLICY_STRICT = _env_bool("AI_POLICY_STRICT", True)
 AI_KEYS_MAX = int(os.getenv("AI_KEYS_MAX", "30"))
 AI_DROP_DESCRIPTION = _env_bool("AI_DROP_DESCRIPTION", True)
+# Paramètres free-tier amicaux
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+AI_RETRY_MAX = int(os.getenv("AI_RETRY_MAX", "4"))
+AI_RETRY_BASE = float(os.getenv("AI_RETRY_BASE", "1.5"))
+AI_BATCH_SLEEP_SECONDS = float(os.getenv("AI_BATCH_SLEEP_SECONDS", "3"))
 
 
 def infer_category(file_or_name: str, default_cat: str | None = None) -> str:
@@ -68,6 +72,21 @@ def _filter_and_normalize(obj: Dict[str, Any], category: str) -> Dict[str, Any]:
                     val = round(num, 2)
                 else:
                     val = s
+            elif ck.endswith("_tb"):
+                # Normalize values like "2.4 PB", "500 TB", including French units "2,4 Po", "500 To"
+                m = re.search(r"([\d\.,]+)\s*([ptg][bo]|[ptg]b|[ptg]o)", s, re.I)
+                if m:
+                    num = float(m.group(1).replace(',', '.'))
+                    unit = m.group(2).lower()
+                    # Harmonize: convert PB->TB (x1024), GB->TB (/1024), handle French 'o'
+                    if unit.startswith('pb') or unit.startswith('po'):
+                        num *= 1024
+                    elif unit.startswith('gb') or unit.startswith('go'):
+                        num /= 1024
+                    # tb/to stays as-is
+                    val = round(num, 2)
+                else:
+                    val = s
             elif ck.endswith("_mhz"):
                 m = re.search(r"([\d\.]+)\s*mhz", s, re.I)
                 val = int(float(m.group(1))) if m else s
@@ -81,18 +100,15 @@ def _filter_and_normalize(obj: Dict[str, Any], category: str) -> Dict[str, Any]:
             break
     return out
 
+    
+
 class GeminiProcessor:
-    def __init__(self, api_key=None, model_name='gemini-1.5-flash'):
-        """
-        Initialise le processeur Gemini de manière optimisée.
-        - model_name: 'gemini-1.5-flash' (rapide, économe) ou 'gemini-1.5-pro' (qualité supérieure)
-        """
+    def __init__(self, api_key: Optional[str] = None, model_name: str = None):
         self.api_key = api_key or os.getenv('GEMINI_API_KEY')
         if not self.api_key:
             raise ValueError("GEMINI_API_KEY non trouvée. Définissez la variable d'environnement ou passez l'API key.")
-        
         genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel(model_name)
+        self.model = genai.GenerativeModel(model_name or GEMINI_MODEL)
         
     def clean_tech_specs(self, raw_specs: Dict[str, Any], product_name: str = "", category_hint: str | None = None) -> Dict[str, Any]:
         """
@@ -152,9 +168,9 @@ class GeminiProcessor:
         Spécifications à traiter :
         Input: {specs_json_string}
         Output:
-        """
+    """
 
-        max_retries = 3
+        max_retries = AI_RETRY_MAX
         for attempt in range(max_retries):
             try:
                 generation_config = genai.types.GenerationConfig(
@@ -165,30 +181,46 @@ class GeminiProcessor:
                 logger.info(f"✅ Spécifications nettoyées pour {product_name}")
                 data = json.loads(response.text)
                 if AI_POLICY_STRICT and isinstance(data, dict):
-                    data = _filter_and_normalize(data, category)
+                    filtered = _filter_and_normalize(data, category)
+                    # Si filtrage vide pour serveurs, conserver les paires non vides de base
+                    if category == "serveurs" and not filtered and data:
+                        safe = {}
+                        for k, v in data.items():
+                            if isinstance(v, (str, int, float)) and str(v).strip():
+                                safe[k.strip()[:60]] = v
+                            elif isinstance(v, dict):
+                                # aplatir un niveau
+                                for k2, v2 in v.items():
+                                    if isinstance(v2, (str, int, float)) and str(v2).strip():
+                                        safe[(k2 or k).strip()[:60]] = v2
+                        data = safe or filtered
+                    else:
+                        data = filtered
                 return data
             except Exception as e:
+                msg = str(e).lower()
+                retryable = any(x in msg for x in ("429", "resourceexhausted", "quota", "unavailable", "503", "timeout"))
                 logger.warning(f"Tentative {attempt + 1}/{max_retries} a échoué pour {product_name}: {e}")
-                if attempt + 1 == max_retries:
+                if (attempt + 1) >= max_retries or not retryable:
                     logger.error(f"Échec final du traitement Gemini pour {product_name} après {max_retries} tentatives.")
                     return {"error": "Gemini processing failed", "details": str(e)}
-                time.sleep(2 ** attempt)
+                # backoff exponentiel adouci
+                delay = (AI_RETRY_BASE ** (attempt + 1))
+                time.sleep(delay)
         return {"error": "Gemini processing failed after all retries"}
     
-    def process_product_batch(self, products: List[Dict[str, Any]], batch_size: int = 5, category_hint: str | None = None) -> List[Dict[str, Any]]:
-        """
-        Traite un lot de produits avec rate limiting
-        """
-        processed_products = []
-        
+    def process_product_batch(self, products: List[Dict[str, Any]], batch_size: int = 3, category_hint: str | None = None) -> List[Dict[str, Any]]:
+        """Traite un lot de produits avec rate limiting et préservation en cas d'erreur IA."""
+        processed_products: List[Dict[str, Any]] = []
+
+        total_batches = (len(products) + batch_size - 1) // batch_size
         for i in range(0, len(products), batch_size):
             batch = products[i:i + batch_size]
-            
-            logger.info(f"🔄 Traitement du lot {i//batch_size + 1}/{(len(products)-1)//batch_size + 1}")
-            
+            logger.info(f"🔄 Traitement du lot {i//batch_size + 1}/{total_batches}")
+
             for product in batch:
                 try:
-                    # Nettoyer les spécifications (fallback si tech_specs est vide)
+                    # Specs brutes ou fallback
                     raw_specs = (
                         product.get('tech_specs')
                         or product.get('specs')
@@ -199,30 +231,36 @@ class GeminiProcessor:
                         or {}
                     )
                     product_name = product.get('name', '')
-                    
+
                     if raw_specs:
                         cleaned_specs = self.clean_tech_specs(raw_specs, product_name, category_hint=category_hint)
-                        product['tech_specs'] = cleaned_specs
-                        product['ai_processed'] = True
-                        product['ai_processed_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
+                        ok = isinstance(cleaned_specs, dict) and ('error' not in cleaned_specs)
+                        if ok:
+                            product['tech_specs'] = cleaned_specs
+                            product['ai_processed'] = True
+                            product['ai_processed_at'] = time.strftime('%Y-%m-%d %H:%M:%S')
+                        else:
+                            # Ne pas écraser tech_specs par un objet d'erreur
+                            product['ai_processed'] = False
                     else:
                         product['ai_processed'] = False
-                    # Option: supprimer toute description marketing si présente
-                    if AI_DROP_DESCRIPTION and 'description' in product:
+
+                    # La description est déjà injectée dans tech_specs côté scraper si nécessaire
+                    if 'description' in product:
                         product.pop('description', None)
-                    
+
                     processed_products.append(product)
-                    
+
                 except Exception as e:
                     logger.error(f"❌ Erreur traitement {product.get('name', 'Unknown')}: {e}")
                     product['ai_processed'] = False
                     processed_products.append(product)
-            
-            # Rate limiting pour éviter les quotas
+
+            # Pause inter-batch configurable (free tier)
             if i + batch_size < len(products):
                 logger.info("⏳ Pause pour respecter les quotas API...")
-                time.sleep(2)
-        
+                time.sleep(AI_BATCH_SLEEP_SECONDS)
+
         return processed_products
     
     def optimize_specs_size(self, specs: Dict[str, Any]) -> Dict[str, Any]:
@@ -254,7 +292,7 @@ class GeminiProcessor:
         
         return optimized
 
-def process_json_file(input_file: str, output_file: str, api_key: str = None):
+def process_json_file(input_file: str, output_file: str, api_key: str = None, *, limit: Optional[int] = None, batch_size: int = 3):
     """
     Traite un fichier JSON complet avec Gemini
     """
@@ -263,21 +301,24 @@ def process_json_file(input_file: str, output_file: str, api_key: str = None):
         with open(input_file, 'r', encoding='utf-8') as f:
             products = json.load(f)
 
-        logger.info(f"📊 Traitement de {len(products)} produits avec Gemini...")
+        if limit is not None:
+            products = products[:max(0, int(limit))]
+
+        logger.info(f"📊 Traitement de {len(products)} produits (API)...")
 
         # Initialiser le processeur
         processor = GeminiProcessor(api_key)
         category_hint = infer_category(input_file)
 
         # Traiter les produits
-        processed_products = processor.process_product_batch(products, category_hint=category_hint)
+        processed_products = processor.process_product_batch(products, category_hint=category_hint, batch_size=batch_size)
 
         # Optimiser la taille
         for product in processed_products:
             if product.get('tech_specs'):
                 product['tech_specs'] = processor.optimize_specs_size(product['tech_specs'])
-            # Double-sécurité: retirer description si demandé
-            if AI_DROP_DESCRIPTION and 'description' in product:
+            # Toujours retirer description (déplacée en tech_specs si utile)
+            if 'description' in product:
                 product.pop('description', None)
 
         # Sauvegarder
@@ -297,6 +338,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Nettoyage/normalisation des specs produits via Gemini")
     parser.add_argument("--in", dest="input_file", required=True, help="Fichier JSON d'entrée")
     parser.add_argument("--out", dest="output_file", required=True, help="Fichier JSON de sortie nettoyé")
+    parser.add_argument("--limit", dest="limit", type=int, default=None, help="Limiter le nombre de produits traités")
+    # offline mode retiré: API uniquement
+    parser.add_argument("--batch-size", dest="batch_size", type=int, default=int(os.getenv("AI_BATCH_SIZE", "3")), help="Taille de lot pour le traitement (API)")
     args = parser.parse_args()
 
     api_key = os.getenv("GEMINI_API_KEY")
@@ -304,5 +348,5 @@ if __name__ == "__main__":
         logger.error("❌ GEMINI_API_KEY non définie dans l'environnement")
         raise SystemExit(2)
 
-    process_json_file(args.input_file, args.output_file, api_key=api_key)
+    process_json_file(args.input_file, args.output_file, api_key=api_key, limit=args.limit, batch_size=args.batch_size)
     logger.info(f"🧹 Nettoyage terminé: {args.output_file}")

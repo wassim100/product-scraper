@@ -61,6 +61,20 @@ geckodriver.exe
 *_test*.json
 test_*.json
 
+# Additional scraped / cleaned artifacts (avoid versioning large, regenerated data)
+*_full.cleaned.json
+*printers_scanners*.json
+*_scanners_full*.json
+*.smoketest*.json
+hp_printers_scanners_schema*.json
+hp_servers_full.cleaned.json
+lenovo_servers_full.cleaned.json
+dell_servers_full.cleaned.json
+asus_servers_full.cleaned.json
+xfusion_servers_improved.json
+lenovo_storage_full.cleaned.json
+dell_storage_full.cleaned.json
+
 ## Secrets
 .env
 config_secret.py
